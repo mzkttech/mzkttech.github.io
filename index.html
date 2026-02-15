@@ -4,64 +4,68 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>mzkttech | デジタル名刺</title>
+<title>mzkttech | デジタルポートフォリオ</title>
 <style>
 body {
 background-color: #e0f7fa;
 color: #37474f;
-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+font-family: sans-serif;
+margin: 0;
+padding: 0;
 display: flex;
 justify-content: center;
-align-items: flex-start;
-min-height: 100vh;
-margin: 0;
-padding-top: 30px;
 }
 .container {
-text-align: center;
-max-width: 400px;
-width: 90%;
+width: 100%;
+max-width: 500px;
 padding: 20px;
+box-sizing: border-box;
+}
+header {
+text-align: center;
+padding: 40px 0 20px;
 }
 .logo {
-width: 140px;
-height: 140px;
+width: 120px;
+height: 120px;
 border-radius: 50%;
 border: 4px solid #ffffff;
-margin-bottom: 15px;
-object-fit: cover;
 box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+object-fit: cover;
 }
-h1 {
-color: #00838f;
-font-size: 1.8rem;
-margin: 0;
-}
+h1 { color: #00838f; margin: 10px 0 5px; font-size: 1.8rem; }
 .typing {
 font-family: monospace;
 white-space: nowrap;
 overflow: hidden;
 border-right: 3px solid #00bcd4;
 width: 0;
-margin: 10px auto;
+margin: 0 auto;
 animation: typing 3s steps(20, end) forwards, blink 0.75s step-end infinite;
 }
 @keyframes typing { from { width: 0 } to { width: 100% } }
 @keyframes blink { from, to { border-color: transparent } 50% { border-color: #00bcd4 } }
-.card {
+.section {
 background: rgba(255, 255, 255, 0.9);
 border-radius: 15px;
 padding: 20px;
-margin-top: 20px;
-text-align: left;
+margin-bottom: 20px;
 box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
-.card h2 { font-size: 1rem; color: #00838f; margin-top: 0; border-bottom: 1px solid #b2ebf2; padding-bottom: 5px; }
-.card p { line-height: 1.5; font-size: 0.85rem; margin: 8px 0; }
+.section h2 {
+font-size: 1.1rem;
+color: #00838f;
+margin-top: 0;
+border-bottom: 2px solid #b2ebf2;
+padding-bottom: 5px;
+}
+.item { margin-bottom: 15px; }
+.item h3 { font-size: 0.95rem; margin: 5px 0; color: #006064; }
+.item p { font-size: 0.85rem; margin: 0; line-height: 1.4; }
 .btn {
 display: block;
 background: #00838f;
-color: white;
+color: white !important;
 text-decoration: none;
 padding: 12px;
 margin: 10px 0;
@@ -84,24 +88,36 @@ text-align: center;
 </head>
 <body>
 <div class="container">
-<div id="special-banner">名刺交換ありがとうございます！</div>
+<header>
+<div id="special-banner">名刺からのアクセスありがとうございます！</div>
 <img src="images/icon.png" alt="ロゴ" class="logo">
 <h1>mzkttech</h1>
-<div class="typing">工業高校 情報工学科 (入学予定)</div>
-<div class="card">
+<div class="typing">工業高校生クリエイター</div>
+</header>
+<div class="section">
 <h2>自己紹介</h2>
-<p>2026年4月から工業高校でプログラミングやハードウェアを学びます。現在、Web制作を基礎から特訓中です。</p>
-<p>将来は、自分の技術で面白いものを作れるエンジニアを目指しています。</p>
+<p style="font-size: 0.85rem;">2026年4月より工業高校 情報工学科。Web制作と動画編集を軸に活動しています。</p>
 </div>
-<div class="card">
-<h2>リンク集</h2>
-<a href="" class="btn">GitHub（開発実績）</a>
-<a href="mailto:mzkt.tech@gmail.com" class="btn">メールを送る</a>
+<div class="section">
+<h2>開発実績 / スキル</h2>
+<div class="item">
+<h3>Web制作</h3>
+<p>HTML/CSSを用いたポートフォリオサイトの構築（本サイト）。</p>
 </div>
-<div class="card">
-<h2>興味・関心</h2>
-<p>Web制作: HTML / CSS / JavaScript</p>
-<p>挑戦中: Python / 自作PC / 電子工作</p>
+<div class="item">
+<h3>動画編集</h3>
+<p>カット、テロップ入れ、BGM挿入など。YouTube動画等の編集が可能です。</p>
+</div>
+</div>
+<div class="section">
+<h2>ご依頼・お問い合わせ</h2>
+<p style="font-size: 0.85rem; margin-bottom: 15px;">動画編集やWeb制作のご相談は、以下のボタンよりお気軽にご連絡ください。</p>
+<a href="mailto:mzkt.tech@gmail.com" class="btn">メールで依頼する</a>
+<a href="" class="btn" style="background: #333;">GitHubを確認</a>
+</div>
+<div class="section">
+<h2>興味のある技術</h2>
+<p style="font-size: 0.85rem;">Python / 自作PC / 電子工作 / サイバーセキュリティ</p>
 </div>
 </div>
 <script>

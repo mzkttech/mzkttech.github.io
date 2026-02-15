@@ -7,21 +7,20 @@
 <title>MZKT.TECH | CREATOR ARCHIVE</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="dark-theme font-medium">
-
-<canvas id="particle-canvas"></canvas>
+<body class="light-theme font-medium"> <canvas id="particle-canvas"></canvas>
 
 <div id="audio-overlay">
 <div class="overlay-inner">
 <h2 id="opening-logo" class="loading-title">MZKT.TECH</h2>
 
+    <p class="guide-text">SELECT LANGUAGE TO START</p>
     <div class="lang-selector">
         <button type="button" onclick="handleLangSelect('ja')" id="btn-ja" class="lang-btn">JP</button>
         <button type="button" onclick="handleLangSelect('en')" id="btn-en" class="lang-btn">EN</button>
         <button type="button" onclick="handleLangSelect('zh')" id="btn-zh" class="lang-btn">ZH</button>
     </div>
 
-    <div id="start-actions" style="display: none; opacity: 0; transition: 0.5s;">
+    <div id="start-actions" class="hidden-ui">
         <div class="sound-choice">
             <button type="button" onclick="handleInit(true)" class="choice-btn primary">SYSTEM START</button>
             <button type="button" onclick="handleInit(false)" class="choice-btn">SILENT START</button>
@@ -30,38 +29,39 @@
 </div>
 </div>
 
-<div id="app-shell" style="display: none; opacity: 0;">
-<aside class="side-nav">
+<div id="app-shell">
+<header class="mobile-header">
 <h1 class="logo" onclick="handleNav('home')">MZKT.TECH</h1>
+<button type="button" class="menu-toggle" onclick="toggleMobileMenu()">MENU</button>
+</header>
 
-    <div class="accessibility-controls">
-        <span class="ctrl-label">FONT SIZE</span>
-        <div class="size-btns">
-            <button type="button" onclick="handleFontSize('small')">A-</button>
-            <button type="button" onclick="handleFontSize('medium')">A</button>
-            <button type="button" onclick="handleFontSize('large')">A+</button>
-        </div>
-    </div>
+<aside class="side-nav" id="side-nav">
+    <h1 class="logo desktop-only" onclick="handleNav('home')">MZKT.TECH</h1>
     
     <nav class="main-menu">
         <div class="menu-item" onclick="handleNav('home')">
-            <span class="num">01</span><a id="nav-home" class="lang-text" data-ja="ホーム" data-en="HOME" data-zh="首页"></a>
+            <span class="num">01</span><span class="lang-text" data-ja="ホーム" data-en="HOME" data-zh="首页"></span>
         </div>
         <div class="menu-item" onclick="handleNav('works')">
-            <span class="num">02</span><a id="nav-works" class="lang-text" data-ja="制作物" data-en="WORKS" data-zh="作品集"></a>
+            <span class="num">02</span><span class="lang-text" data-ja="制作物" data-en="WORKS" data-zh="作品集"></span>
         </div>
         <div class="menu-item" onclick="handleNav('log')">
-            <span class="num">03</span><a id="nav-log" class="lang-text" data-ja="日誌" data-en="LOG" data-zh="日志"></a>
+            <span class="num">03</span><span class="lang-text" data-ja="日誌" data-en="LOG" data-zh="日志"></span>
         </div>
         <div class="menu-item" onclick="handleNav('contact')">
-            <span class="num">04</span><a id="nav-contact" class="lang-text" data-ja="連絡先" data-en="CONTACT" data-zh="联系方式"></a>
+            <span class="num">04</span><span class="lang-text" data-ja="連絡先" data-en="CONTACT" data-zh="联系方式"></span>
         </div>
     </nav>
 
     <div class="nav-bottom">
-        <button type="button" onclick="handleTheme()" class="theme-btn lang-text" data-ja="配色切替" data-en="THEME" data-zh="切换主题"></button>
+        <div class="accessibility-controls">
+            <button type="button" onclick="handleFontSize('small')">A-</button>
+            <button type="button" onclick="handleFontSize('medium')">A</button>
+            <button type="button" onclick="handleFontSize('large')">A+</button>
+        </div>
+        <button type="button" onclick="handleTheme()" class="theme-btn lang-text" data-ja="背景色切替" data-en="SWITCH COLOR" data-zh="切换主题"></button>
         <div class="copyright-box">
-            <p>START: 2025.10.11</p>
+            <p>VER: 2.5.0-STABLE</p>
             <p>&copy; 2026 MZKT.TECH</p>
         </div>
     </div>
@@ -70,18 +70,18 @@
 <main id="content-holder"></main>
 
 <footer class="system-footer">
-    <div class="player-center-unit">
-        <div class="vol-controls">
-            <button type="button" class="vol-btn" onclick="handleVolume(-1)">−</button>
-            <span id="ui-vol-text" class="vol-value">05</span>
-            <button type="button" class="vol-btn plus" onclick="handleVolume(1)">+</button>
+    <div class="player-unit">
+        <div class="vol-group">
+            <button type="button" onclick="handleVolume(-1)">−</button>
+            <span id="ui-vol-text">05</span>
+            <button type="button" onclick="handleVolume(1)">+</button>
         </div>
         
-        <button type="button" id="play-pause-btn" class="control-main-btn" onclick="handleTogglePlay()">▶</button>
+        <button type="button" id="play-pause-btn" class="main-play" onclick="handleTogglePlay()">▶</button>
         
-        <div class="music-info">
-            <span class="purple-text">MZKT // SYSTEM BGM</span>
-            <span id="status-tag" class="status-tag">ACTIVE</span>
+        <div class="track-meta">
+            <span class="track-name">SYSTEM_BGM // MZKT</span>
+            <span id="status-tag">ACTIVE</span>
         </div>
     </div>
 </footer>

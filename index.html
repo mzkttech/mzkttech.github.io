@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>MZKT.TECH | CREATIVE PORTFOLIO</title>
+    <title>MZKT.TECH | CREATIVE SYSTEM</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="dark-theme">
@@ -16,8 +16,8 @@
     <div class="overlay-inner">
         <h2 class="loading-title">MZKT.TECH</h2>
         <div class="sound-choice">
-            <button onclick="window.initSite(true)" class="choice-btn">ENTER WITH SOUND</button>
-            <button onclick="window.initSite(false)" class="choice-btn muted">WITHOUT SOUND</button>
+            <button onclick="window.initSite(true)" class="choice-btn">SYSTEM START [AUDIO ON]</button>
+            <button onclick="window.initSite(false)" class="choice-btn muted">SYSTEM START [SILENT]</button>
         </div>
     </div>
 </div>
@@ -27,6 +27,7 @@
         <div class="nav-top">
             <h1 class="logo" onclick="window.navigateTo('home')">MZKT<span>.</span></h1>
         </div>
+        
         <nav class="main-menu">
             <div class="menu-item" onclick="window.navigateTo('home')">
                 <span class="num">01</span><a id="nav-home">HOME</a>
@@ -41,11 +42,15 @@
                 <span class="num">04</span><a id="nav-contact">CONTACT</a>
             </div>
         </nav>
+
         <div class="nav-bottom">
-            <button onclick="window.toggleTheme()" class="theme-btn">SWITCH THEME</button>
+            <button onclick="window.toggleTheme()" class="theme-btn">SWITCH COLOR MODE</button>
             <div class="copyright-box">
-                <p>SYSTEM: MZKT_v2.0.4</p>
-                <p>&copy; 2026 MZKT.TECH ALL RIGHTS RESERVED.</p>
+                <p>[ SYSTEM SPECS ]</p>
+                <p>VERSION: 2.0.4-STABLE</p>
+                <p>VISUAL: MZKT.ENGINE</p>
+                <p>SOUND: SUNO_AI_GENERIC</p>
+                <p style="margin-top:10px; opacity:0.5;">&copy; 2026 MZKT.TECH</p>
             </div>
         </div>
     </aside>
@@ -56,11 +61,14 @@
         <div class="footer-line"></div>
         <div class="player-controls">
             <div class="status-group">
-                <span id="play-status" class="purple-text">MZKT.TECH ▶PLAYING</span>
+                <span id="play-status" class="purple-text">MZKT.SYSTEM // ACTIVE</span>
                 <span class="divider">¦</span>
-                <span id="progress-text" class="progress-bar">■■■■■■□□□□□□□□□□□□□□</span>
+                <span id="track-name" class="mint-text">SRC: SUNO_AI_GENERIC_CORE</span>
+                <span class="divider">¦</span>
+                <span id="progress-text" class="progress-bar">□□□□□□□□□□□□□□□□□□□□</span>
                 <span id="time-display" class="time-text">0:00 / --:--</span>
             </div>
+            
             <div class="volume-group">
                 <span class="vol-label">VOLUME</span>
                 <div class="vol-controls">

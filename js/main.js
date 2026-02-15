@@ -1,7 +1,7 @@
-// 1. 各ページの中身を定義
+// 各ページの内容
 const pages = {
     home: `
-        <nav class="reveal">
+        <nav class="reveal is-visible">
             <div class="nav-link" onclick="navigateTo('profile')">
                 <span class="nav-num">/ 01</span><h2 class="nav-title">PROFILE</h2>
             </div>
@@ -13,94 +13,72 @@ const pages = {
             </div>
         </nav>`,
     profile: `
-        <div class="reveal">
+        <div class="reveal is-visible">
             <span class="nav-num">/ 01</span>
             <h2 class="nav-title" style="font-size: 2.5rem;">PROFILE</h2>
-            <p style="line-height: 2; color: var(--sub); letter-spacing: 0.1em;">
-                工業高校で情報工学を専攻している2026年卒業見込みの学生です。<br>
-                映像制作とIT技術の融合に興味があり、本サイトもSPA構成で構築しています。
+            <p style="line-height: 2; color: #666; letter-spacing: 0.1em;">
+                工業高校で情報工学を専攻。2026年卒業見込み。<br>
+                映像制作とIT技術の融合を探求しています。
             </p>
             <button onclick="navigateTo('home')" class="btn-mail" style="margin-top:40px;">BACK</button>
         </div>`,
     works: `
-        <div class="reveal">
+        <div class="reveal is-visible">
             <span class="nav-num">/ 02</span>
             <h2 class="nav-title" style="font-size: 2.5rem;">WORKS</h2>
-            <div style="margin-bottom: 60px;">
-                <p style="font-size: 1.2rem; margin-bottom: 5px;">卒業生を送る会 記念動画</p>
-                <p style="color: var(--sub); font-size: 0.8rem;">VIDEO PRODUCTION / 2025</p>
-            </div>
-            <div style="margin-bottom: 60px;">
-                <p style="font-size: 1.2rem; margin-bottom: 5px;">SPA Portfolio Site</p>
-                <p style="color: var(--sub); font-size: 0.8rem;">WEB DESIGN / 2026</p>
+            <div style="margin-bottom: 40px;">
+                <p style="font-size: 1.2rem;">卒業生を送る会 記念動画</p>
+                <p style="color: #666; font-size: 0.8rem;">VIDEO PRODUCTION / 2025</p>
             </div>
             <button onclick="navigateTo('home')" class="btn-mail">BACK</button>
         </div>`,
     contact: `
-        <div class="reveal">
+        <div class="reveal is-visible">
             <span class="nav-num">/ 03</span>
             <h2 class="nav-title" style="font-size: 2.5rem;">CONTACT</h2>
-            <p style="color: var(--sub); margin-bottom: 40px;">ご依頼やご相談は、以下のボタンよりメールにて受け付けております。</p>
+            <p style="color: #666; margin-bottom: 40px;">ご依頼はメールにて承ります。</p>
             <a href="mailto:mzkt.tech@gmail.com" class="btn-mail">SEND EMAIL</a>
-            <button onclick="navigateTo('home')" class="btn-mail" style="margin-left:20px; border:none; opacity:0.5;">BACK</button>
+            <button onclick="navigateTo('home')" class="btn-mail" style="margin-left:15px; border:none; opacity:0.5;">BACK</button>
         </div>`
 };
 
-// 2. ページ遷移の関数
-function navigateTo(pageKey) {
+// グローバルに関数を公開
+window.navigateTo = function(pageKey) {
     const contentArea = document.getElementById('content-area');
     const indicator = document.getElementById('page-indicator');
-    
-    // フェードアウト
     contentArea.style.opacity = 0;
-    
     setTimeout(() => {
-        // 中身の書き換え
         contentArea.innerHTML = pages[pageKey];
         indicator.innerText = `/ ${pageKey.toUpperCase()}`;
-        
-        // フェードイン
         contentArea.style.opacity = 1;
-        
-        // アニメーション適用
-        const reveals = contentArea.querySelectorAll('.reveal');
-        reveals.forEach(el => {
-            setTimeout(() => el.classList.add('is-visible'), 100);
-        });
-    }, 500);
-}
+    }, 400);
+};
 
-// 3. サイト初期化
-function initSite(isSoundOn) {
+window.initSite = function(isSoundOn) {
     const bgm = document.getElementById('bgm');
-    document.getElementById('audio-overlay').style.opacity = 0;
+    const overlay = document.getElementById('audio-overlay');
+    const app = document.getElementById('app-body');
+    
+    overlay.style.opacity = 0;
     setTimeout(() => {
-        document.getElementById('audio-overlay').style.display = 'none';
-        document.getElementById('app-body').style.display = 'flex';
+        overlay.style.display = 'none';
+        app.style.display = 'flex';
+        setTimeout(() => app.style.opacity = 1, 50);
         document.getElementById('audio-control').style.display = 'flex';
-        navigateTo('home');
-        
-        // アニメーション（サイドバー用）
-        document.querySelectorAll('.side-static .reveal').forEach(el => el.classList.add('is-visible'));
+        window.navigateTo('home');
     }, 500);
 
     if (isSoundOn) {
         bgm.play();
         updateAudioUI(true);
     }
-}
+};
 
-// 4. 音声管理
-function toggleAudio() {
+window.toggleAudio = function() {
     const bgm = document.getElementById('bgm');
-    if (bgm.paused) {
-        bgm.play();
-        updateAudioUI(true);
-    } else {
-        bgm.pause();
-        updateAudioUI(false);
-    }
-}
+    bgm.paused ? bgm.play() : bgm.pause();
+    updateAudioUI(!bgm.paused);
+};
 
 function updateAudioUI(isPlaying) {
     const control = document.getElementById('audio-control');

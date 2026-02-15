@@ -1,38 +1,37 @@
 const pages = {
-    home: `<div><span class="module-num">[ MODULE_01 ]</span><h2 class="title">MZKT.<br>TECH</h2><p style="color:#666">CREATOR ARCHIVE. ESTABLISHED 2026.</p></div>`,
+    home: `<div><span class="module-num">[ MODULE_01 ]</span><h2 class="title">MZKT.<br>TECH</h2><p style="color:#666">クリエイターアーカイブ。2026年 始動。</p></div>`,
     about: `<div><span class="module-num">[ MODULE_02 ]</span><h2 class="title">SPEC.</h2>
-        <div class="skill-row"><p>HTML / CSS / UI_DESIGN</p><div class="skill-bar"><div class="skill-progress" data-percent="45%"></div></div></div>
-        <div class="skill-row"><p>JAVASCRIPT / SYSTEM</p><div class="skill-bar"><div class="skill-progress" data-percent="35%"></div></div></div>
-        <div class="skill-row"><p>SUNO_AI / SOUND_DES</p><div class="skill-bar"><div class="skill-progress" data-percent="60%"></div></div></div></div>`,
-    works: `<div><span class="module-num">[ MODULE_03 ]</span><h2 class="title">WORKS.</h2><p style="color:#666">REPOSITORY_IS_EMPTY.</p></div>`,
+        <div class="skill-row"><p>HTML / CSS / デザイン</p><div class="skill-bar"><div class="skill-progress" data-percent="45%"></div></div></div>
+        <div class="skill-row"><p>JAVASCRIPT / システム</p><div class="skill-bar"><div class="skill-progress" data-percent="35%"></div></div></div>
+        <div class="skill-row"><p>SUNO AI / 楽曲制作</p><div class="skill-bar"><div class="skill-progress" data-percent="60%"></div></div></div></div>`,
+    works: `<div><span class="module-num">[ MODULE_03 ]</span><h2 class="title">WORKS.</h2><p style="color:#666">現在、データ・リポジトリは空です。</p></div>`,
     legal: `<div><span class="module-num">[ MODULE_04 ]</span><h2 class="title">LEGAL.</h2>
         <div class="legal-section">
-            <h3 class="legal-title">TERMS OF SERVICE</h3>
-            <p class="legal-text">当サイトは学術的探求を目的とした学生クリエイターのポートフォリオです。掲載内容の商用利用を禁じます。</p>
+            <h3 class="legal-title">利用規約</h3>
+            <p class="legal-text">当サイトは学術的探求を目的とした学生クリエイターのポートフォリオです。掲載内容の商用利用、無断転載を固く禁じます。</p>
         </div>
         <div class="legal-section">
-            <h3 class="legal-title">INTELLECTUAL PROPERTY</h3>
-            <p class="legal-text">本サイトのデザイン、コード、およびSuno AIにて生成された音源の権利はMZKT.TECHに帰属します。&copy; 2026</p>
+            <h3 class="legal-title">知的財産権について</h3>
+            <p class="legal-text">本サイトのデザイン、プログラム、およびSuno AIにて生成された音源の権利はMZKT.TECHに帰属します。&copy; 2026</p>
         </div></div>`,
-    contact: `<div><span class="module-num">[ MODULE_05 ]</span><h2 class="title">CONNECT.</h2>
-        <form class="contact-form" onsubmit="event.preventDefault(); alert('MESSAGE SENT (DEMO)');">
-            <div class="form-group"><label>NAME</label><input type="text" required></div>
-            <div class="form-group"><label>EMAIL</label><input type="email" required></div>
-            <div class="form-group"><label>MESSAGE</label><textarea rows="4" required></textarea></div>
-            <button type="submit" class="submit-btn">SEND MESSAGE</button>
+    contact: `<div><span class="module-num">[ MODULE_05 ]</span><h2 class="title">CONTACT.</h2>
+        <form class="contact-form" onsubmit="event.preventDefault(); alert('メッセージが送信されました（デモ）');">
+            <div class="form-group"><label>氏名 / NAME</label><input type="text" required></div>
+            <div class="form-group"><label>メールアドレス / EMAIL</label><input type="email" required></div>
+            <div class="form-group"><label>メッセージ内容 / MESSAGE</label><textarea rows="5" required></textarea></div>
+            <button type="submit" class="submit-btn">メッセージを送信</button>
         </form></div>`
 };
 
 let volLevel = 5;
 const bgm = document.getElementById('bgm');
 
-// URLパラメータ処理（リロード対応）
+// URLパラメータ処理
 function getParam() { return new URLSearchParams(window.location.search).get('p') || 'home'; }
 
 window.navigateTo = function(key) {
     const h = document.getElementById('content-holder');
     h.style.opacity = '0';
-    // URLを更新
     const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?p=' + key;
     window.history.pushState({path:newUrl}, '', newUrl);
 
@@ -46,7 +45,6 @@ window.navigateTo = function(key) {
     }, 200);
 };
 
-// 戻るボタン対応
 window.onpopstate = () => window.navigateTo(getParam());
 
 window.adjustVolume = function(delta) {
@@ -74,7 +72,6 @@ window.initSite = function(sound) {
     if(sound) { bgm.volume = 0.5; bgm.play(); } else { volLevel = 0; window.adjustVolume(0); }
 };
 
-// パーティクル・カーソル処理
 const canvas = document.getElementById('particle-canvas');
 const ctx = canvas.getContext('2d');
 let particles = [];

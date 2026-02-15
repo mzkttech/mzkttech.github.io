@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MZKT.TECH | UNIVERSAL ARCHIVE</title>
+<title>MZKT.TECH | CREATOR ARCHIVE</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="dark-theme font-medium">
@@ -43,14 +43,14 @@
         <div class="menu-item" onclick="handleNav('home')">
             <span class="num">01</span><a id="nav-home" class="lang-text" data-ja="ホーム" data-en="HOME" data-zh="首页"></a>
         </div>
-        <div class="menu-item" onclick="handleNav('about')">
-            <span class="num">02</span><a id="nav-about" class="lang-text" data-ja="能力" data-en="SPEC" data-zh="能力"></a>
-        </div>
         <div class="menu-item" onclick="handleNav('works')">
-            <span class="num">03</span><a id="nav-works" class="lang-text" data-ja="制作物" data-en="WORKS" data-zh="作品集"></a>
+            <span class="num">02</span><a id="nav-works" class="lang-text" data-ja="制作物" data-en="WORKS" data-zh="作品集"></a>
         </div>
         <div class="menu-item" onclick="handleNav('contact')">
-            <span class="num">04</span><a id="nav-contact" class="lang-text" data-ja="連絡先" data-en="CONTACT" data-zh="联系方式"></a>
+            <span class="num">03</span><a id="nav-contact" class="lang-text" data-ja="連絡先" data-en="CONTACT" data-zh="联系方式"></a>
+        </div>
+        <div class="menu-item" onclick="handleNav('legal')">
+            <span class="num">04</span><a id="nav-legal" class="lang-text" data-ja="法的表記" data-en="LEGAL" data-zh="法律声明"></a>
         </div>
     </nav>
 
@@ -66,21 +66,18 @@
 <main id="content-holder"></main>
 
 <footer class="system-footer">
-    <div class="player-controls">
-        <div class="status-group">
-            <button type="button" id="play-pause-btn" class="control-main-btn" onclick="handleTogglePlay()">▶</button>
-            <div class="text-info">
-                <span class="purple-text">MZKT // ACTIVE</span>
-            </div>
+    <div class="player-center-unit">
+        <div class="vol-controls">
+            <button type="button" class="vol-btn" onclick="handleVolume(-1)">−</button>
+            <span id="ui-vol-text" class="vol-value">05</span>
+            <button type="button" class="vol-btn plus" onclick="handleVolume(1)">+</button>
         </div>
         
-        <div class="volume-container">
-            <span class="vol-label">VOLUME</span>
-            <div class="vol-controls">
-                <button type="button" class="vol-btn" onclick="handleVolume(-1)">−</button>
-                <span id="ui-vol-text" class="vol-value">05</span>
-                <button type="button" class="vol-btn plus" onclick="handleVolume(1)">+</button>
-            </div>
+        <button type="button" id="play-pause-btn" class="control-main-btn" onclick="handleTogglePlay()">▶</button>
+        
+        <div class="music-info">
+            <span class="purple-text">MZKT // SYSTEM BGM</span>
+            <span id="status-tag" class="status-tag">ACTIVE</span>
         </div>
     </div>
 </footer>

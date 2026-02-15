@@ -1,22 +1,23 @@
 (function() {
 const bgm = document.getElementById('bgm');
+const glitch = document.getElementById('glitch-overlay');
 let currentLang = 'ja';
 let volValue = 5;
 
 const database = {
     home: { 
-        ja: '<h1 class="page-h">HELLO.<br>MZKT</h1><p>MZKT.TECH 2026 アーカイブへようこそ。この空間は、システム制御されたデザインと情報の記録です。</p>',
-        en: '<h1 class="page-h">HELLO.<br>MZKT</h1><p>Welcome to MZKT.TECH 2026 Archive. This space is a record of system-controlled design.</p>',
-        zh: '<h1 class="page-h">你好。<br>MZKT</h1><p>欢迎来到 MZKT.TECH 2026 档案。这个空间是系统控制设计和信息的记录。</p>'
+        ja: '<h1 class="page-h">HELLO.<br>MZKT</h1><p>MZKT.TECH 2026へようこそ。ここはシステムによって制御された、思考と情報のアーカイブです。</p>',
+        en: '<h1 class="page-h">HELLO.<br>MZKT</h1><p>Welcome to MZKT.TECH 2026. A record of thought and information controlled by the system.</p>',
+        zh: '<h1 class="page-h">你好。<br>MZKT</h1><p>欢迎来到 MZKT.TECH 2026。这是一个由系统控制的思想和信息档案。</p>'
     },
-    works: {
-        ja: '<h1 class="page-h">WORKS.</h1><div class="item-card"><h3>SYSTEM v3.5</h3><p>本サイトのコア。レスポンシブ・プレイヤー・多言語を統合。</p></div><div class="item-card"><h3>AI SOUND</h3><p>Suno AIによるアンビエント生成プロトコル。</p></div>'
+    works: { 
+        ja: '<h1 class="page-h">WORKS.</h1><div class="item-card"><h3>GLITCH UI</h3><p>ページ遷移時のグリッチ演出。デジタルアーカイブ特有の質感を追求。</p></div><div class="item-card"><h3>RESPONSIVE SYSTEM</h3><p>全端末対応のレイアウト。モバイルでの操作性を最優先した設計。</p></div>' 
     },
-    log: {
-        ja: '<h1 class="page-h">LOG.</h1><div class="item-card"><h3>2026.02.15</h3><p>モバイルUIの完全再構築。ボトムナビゲーションの実装により操作性を向上。重なり問題を解決。</p></div>'
+    log: { 
+        ja: '<h1 class="page-h">LOG.</h1><div class="item-card"><h3>2026.02.15</h3><p>グリッチ・トランジションの実装完了。システムの安定性が向上。視認性の調整を実施。</p></div>' 
     },
-    contact: {
-        ja: '<h1 class="page-h">MAIL.</h1><p>Contact: mzkt.tech@gmail.com</p>'
+    contact: { 
+        ja: '<h1 class="page-h">MAIL.</h1><p>Contact: mzkt.tech@gmail.com</p>' 
     }
 };
 
@@ -40,12 +41,19 @@ window.handleInit = function(sound) {
 };
 
 window.handleNav = function(key) {
-    const h = document.getElementById('view-container');
-    h.innerHTML = database[key] ? (database[key][currentLang] || database[key]['ja']) : database['home'][currentLang];
-    document.getElementById('main-content').scrollTop = 0;
-    document.querySelectorAll('.lang-text').forEach(el => {
-        el.innerText = el.getAttribute(`data-${currentLang}`);
-    });
+    glitch.classList.add('active');
+    setTimeout(() => {
+        const h = document.getElementById('view-container');
+        h.innerHTML = database[key] ? (database[key][currentLang] || database[key]['ja']) : database['home'][currentLang];
+        h.classList.remove('view-fade');
+        void h.offsetWidth;
+        h.classList.add('view-fade');
+        document.getElementById('main-content').scrollTop = 0;
+        document.querySelectorAll('.lang-text').forEach(el => {
+            el.innerText = el.getAttribute(`data-${currentLang}`);
+        });
+        glitch.classList.remove('active');
+    }, 200);
 };
 
 window.handleTheme = function() {
@@ -69,7 +77,6 @@ window.handleTogglePlay = function() {
     else { bgm.pause(); document.getElementById('play-btn').innerText = '▶'; }
 };
 
-// パーティクルアニメ
 const canvas = document.getElementById('particle-canvas');
 const ctx = canvas.getContext('2d');
 let pts = [];

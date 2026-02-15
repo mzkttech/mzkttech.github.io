@@ -1,89 +1,101 @@
 <!DOCTYPE html>
+
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>MZKT.TECH | クリエイターアーカイブ</title>
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MZKT.TECH | UNIVERSAL CREATOR ARCHIVE</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
-<body class="dark-theme">
+<body class="dark-theme font-medium">
 
-<div id="cursor"></div>
-<div id="cursor-follower"></div>
-<canvas id="particle-canvas"></canvas>
+<div id="cursor" aria-hidden="true"></div>
+<div id="cursor-follower" aria-hidden="true"></div>
+<canvas id="particle-canvas" aria-hidden="true"></canvas>
 
-<div id="audio-overlay">
-    <div class="overlay-inner">
-        <h2 class="loading-title">MZKT.TECH</h2>
-        <div class="sound-choice">
-            <button onclick="window.initSite(true)" class="choice-btn">システム起動 [音声あり]</button>
-            <button onclick="window.initSite(false)" class="choice-btn">システム起動 [消音]</button>
-        </div>
-    </div>
+<div id="audio-overlay" role="dialog" aria-modal="true">
+<div class="overlay-inner">
+<h2 class="loading-title">MZKT.TECH</h2>
+<div class="lang-selector">
+<button onclick="window.setLang('ja')" class="lang-btn active">JP</button>
+<button onclick="window.setLang('en')" class="lang-btn">EN</button>
+<button onclick="window.setLang('zh')" class="lang-btn">ZH</button>
+</div>
+<div class="sound-choice">
+<button onclick="window.initSite(true)" class="choice-btn primary">SYSTEM START</button>
+<button onclick="window.initSite(false)" class="choice-btn">SILENT START</button>
+</div>
+</div>
 </div>
 
 <div id="app-shell" style="display: none; opacity: 0;">
-    <aside class="side-nav">
-        <div class="nav-top">
-            <h1 class="logo" onclick="window.navigateTo('home')">MZKT.TECH</h1>
+<aside class="side-nav" role="navigation">
+<div class="nav-top">
+<h1 class="logo" onclick="window.navigateTo('home')">MZKT.TECH</h1>
+
+        <div class="accessibility-controls">
+            <span class="ctrl-label">FONT SIZE</span>
+            <div class="size-btns">
+                <button onclick="window.setFontSize('small')" aria-label="Small Font">A-</button>
+                <button onclick="window.setFontSize('medium')" aria-label="Medium Font">A</button>
+                <button onclick="window.setFontSize('large')" aria-label="Large Font">A+</button>
+            </div>
+        </div>
+    </div>
+    
+    <nav class="main-menu">
+        <div class="menu-item" onclick="window.navigateTo('home')">
+            <span class="num">01</span><a id="nav-home" class="lang-text" data-ja="ホーム" data-en="HOME" data-zh="首页"></a>
+        </div>
+        <div class="menu-item" onclick="window.navigateTo('about')">
+            <span class="num">02</span><a id="nav-about" class="lang-text" data-ja="スペック" data-en="SPEC" data-zh="能力"></a>
+        </div>
+        <div class="menu-item" onclick="window.navigateTo('works')">
+            <span class="num">03</span><a id="nav-works" class="lang-text" data-ja="制作物" data-en="WORKS" data-zh="作品集"></a>
+        </div>
+        <div class="menu-item" onclick="window.navigateTo('legal')">
+            <span class="num">04</span><a id="nav-legal" class="lang-text" data-ja="法的表記" data-en="LEGAL" data-zh="法律声明"></a>
+        </div>
+        <div class="menu-item" onclick="window.navigateTo('contact')">
+            <span class="num">05</span><a id="nav-contact" class="lang-text" data-ja="連絡先" data-en="CONTACT" data-zh="联系方式"></a>
+        </div>
+    </nav>
+
+    <div class="nav-bottom">
+        <button onclick="window.toggleTheme()" class="theme-btn lang-text" data-ja="配色切替" data-en="THEME" data-zh="切换主题"></button>
+        <div class="copyright-box">
+            <p>PROJECT START: 2025.10.11</p>
+            <p>MZKT SYSTEM v3.5.2-FINAL</p>
+            <p style="margin-top:10px; opacity:0.5;">&copy; 2026 MZKT.TECH</p>
+        </div>
+    </div>
+</aside>
+
+<main id="content-holder" role="main"></main>
+
+<footer class="system-footer">
+    <div class="footer-line"></div>
+    <div class="player-controls">
+        <div class="status-group">
+            <button id="play-pause-btn" class="control-main-btn" onclick="window.togglePlay()" aria-label="Play/Pause">▶</button>
+            <span id="play-status" class="purple-text">MZKT // ACTIVE</span>
+            <span id="time-display" class="time-text">0:00 / 0:00</span>
         </div>
         
-        <nav class="main-menu">
-            <div class="menu-item" onclick="window.navigateTo('home')">
-                <span class="num">01</span><a id="nav-home">ホーム</a>
-            </div>
-            <div class="menu-item" onclick="window.navigateTo('about')">
-                <span class="num">02</span><a id="nav-about">スペック</a>
-            </div>
-            <div class="menu-item" onclick="window.navigateTo('works')">
-                <span class="num">03</span><a id="nav-works">制作物</a>
-            </div>
-            <div class="menu-item" onclick="window.navigateTo('legal')">
-                <span class="num">04</span><a id="nav-legal">法的表記</a>
-            </div>
-            <div class="menu-item" onclick="window.navigateTo('contact')">
-                <span class="num">05</span><a id="nav-contact">連絡</a>
-            </div>
-        </nav>
-
-        <div class="nav-bottom">
-            <button onclick="window.toggleTheme()" class="theme-btn">表示モード切替</button>
-            <div class="copyright-box">
-                <p>制作開始日: 2025.10.11</p>
-                <p>システムバージョン: 2.1.0-STABLE</p>
-                <p>種別: 学生クリエイターアーカイブ</p>
-                <p>音源: SUNO_AI_BGM_UNIT</p>
-                <p style="margin-top:10px; opacity:0.5;">&copy; 2026 MZKT.TECH</p>
+        <div class="volume-group">
+            <div class="vol-controls">
+                <button class="vol-btn minus" onclick="window.adjustVolume(-1)" aria-label="Volume Down">−</button>
+                <span id="ui-text" class="vol-value">05</span>
+                <button class="vol-btn plus" onclick="window.adjustVolume(1)" aria-label="Volume Up">+</button>
             </div>
         </div>
-    </aside>
-
-    <main id="content-holder"></main>
-
-    <footer class="system-footer">
-        <div class="footer-line"></div>
-        <div class="player-controls">
-            <div class="status-group">
-                <span id="play-status" class="purple-text">MZKT.TECH ▶再生中</span>
-                <span class="divider">¦</span>
-                <span id="progress-text" class="progress-bar">--------------------</span>
-                <span id="time-display" class="time-text">0:00 / 0:00</span>
-            </div>
-            
-            <div class="volume-group">
-                <span class="vol-label">音量設定</span>
-                <div class="vol-controls">
-                    <button class="vol-btn" onclick="window.adjustVolume(-1)">−</button>
-                    <span id="ui-text" class="vol-value">05</span>
-                    <button class="vol-btn" onclick="window.adjustVolume(1)">+</button>
-                </div>
-            </div>
-        </div>
-    </footer>
+    </div>
+</footer>
 </div>
 
 <audio id="bgm" src="assets/bgm.mp3" loop preload="auto"></audio>
 
 <script src="js/main.js"></script>
+
 </body>
 </html>

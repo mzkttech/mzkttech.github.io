@@ -1,8 +1,9 @@
-:root {
-    --bg: #0a0a0a;
+::root {
+    --bg: #050505;
     --text: #ffffff;
     --accent: #00e5ff;
-    --sub: #888888;
+    --sub: #777777;
+    --border: rgba(255, 255, 255, 0.1);
 }
 
 body {
@@ -10,44 +11,53 @@ body {
     color: var(--text);
     font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
     margin: 0;
+    line-height: 1.5;
     overflow-x: hidden;
-    letter-spacing: 0.05em;
 }
 
-/* 高級感を出すためのフェードアニメーション */
+/* スクロールで現れるアニメーション */
 .reveal {
     opacity: 0;
-    transform: translateY(20px);
-    transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateY(30px);
+    transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal.is-visible {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* PCレイアウト：WDのようなスプリット画面 */
+/* PC版：左右分割レイアウト */
 @media screen and (min-width: 768px) {
-    .split-layout {
-        display: flex;
-        height: 100vh;
-    }
-    .side-fixed {
+    .layout-wrapper { display: flex; height: 100vh; }
+    .side-static {
         flex: 1;
+        padding: 80px;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        padding: 60px;
+        justify-content: space-between;
         position: sticky;
         top: 0;
+        border-right: 1px solid var(--border);
     }
-    .main-scroll {
-        flex: 1.2;
-        padding: 120px 60px;
-    }
+    .main-scroll { flex: 1; padding: 120px 80px; }
 }
 
-/* SPレイアウト：ブルーエッジのようなミニマル表示 */
+/* SP版：ミニマルレイアウト */
 @media screen and (max-width: 767px) {
-    .container { padding: 40px 20px; text-align: left; }
-    h1 { font-size: 2.5rem; line-height: 1.1; }
+    .side-static { padding: 60px 25px 20px; border-bottom: 1px solid var(--border); }
+    .main-scroll { padding: 40px 25px 80px; }
+    h1 { font-size: 2.2rem; }
 }
+
+/* 共通パーツ */
+.nav-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    margin-bottom: 100px;
+    transition: 0.4s;
+}
+.nav-link:hover { opacity: 0.6; }
+.nav-num { color: var(--accent); font-family: monospace; font-size: 0.8rem; }
+.nav-title { font-size: 2.5rem; margin: 15px 0; font-weight: 300; }
+.nav-desc { color: var(--sub); font-size: 0.85rem; }

@@ -12,22 +12,22 @@
     <div class="overlay-inner">
         <h2 class="loading-title">MZKT.TECH</h2>
         <div class="sound-choice">
-            <button onclick="initSite(true)" class="choice-btn">ENTER WITH SOUND</button>
-            <button onclick="initSite(false)" class="choice-btn muted">WITHOUT SOUND</button>
+            <button onclick="window.initSite(true)" class="choice-btn">ENTER WITH SOUND</button>
+            <button onclick="window.initSite(false)" class="choice-btn muted">WITHOUT SOUND</button>
         </div>
     </div>
 </div>
 
-<div id="app-shell" style="visibility: hidden; opacity: 0;">
+<div id="app-shell" style="display: none; opacity: 0;">
     <aside class="side-nav">
         <div class="nav-top">
-            <h1 class="logo" onclick="navigateTo('home')">MZKT<span>.</span></h1>
+            <h1 class="logo" onclick="window.navigateTo('home')">MZKT<span>.</span></h1>
         </div>
         <nav class="main-menu">
-            <a onclick="navigateTo('home')">HOME</a>
-            <a onclick="navigateTo('profile')">PROFILE</a>
-            <a onclick="navigateTo('works')">WORKS</a>
-            <a onclick="navigateTo('contact')">CONTACT</a>
+            <a onclick="window.navigateTo('home')">HOME</a>
+            <a onclick="window.navigateTo('profile')">PROFILE</a>
+            <a onclick="window.navigateTo('works')">WORKS</a>
+            <a onclick="window.navigateTo('contact')">CONTACT</a>
         </nav>
         <div class="nav-bottom">
             <p class="copyright">&copy; 2026 MZKT.TECH</p>
@@ -38,14 +38,19 @@
         </main>
 </div>
 
-<div id="audio-ui" onclick="toggleAudio()" style="display:none;">
+<div id="audio-ui" onclick="window.cycleVolume()" style="display:none;">
+    <div class="vol-info">
+        <span id="ui-text">10</span>
+        <div class="vol-gauge">
+            <div id="vol-bar" style="width: 100%;"></div>
+        </div>
+    </div>
     <div class="wave-container">
         <span class="stroke"></span><span class="stroke"></span><span class="stroke"></span><span class="stroke"></span>
     </div>
-    <span id="ui-text">MUTE</span>
 </div>
 
-<audio id="bgm" src="assets/bgm.mp3" loop></audio>
+<audio id="bgm" src="assets/bgm.mp3" loop preload="auto"></audio>
 
 <script src="js/main.js"></script>
 </body>

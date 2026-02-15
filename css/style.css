@@ -1,98 +1,82 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;700&display=swap');
 
 :root {
-    --bg: #050505; /* 真っ黒ではなく、深みのある黒 */
+    --bg: #000000;
     --text: #ffffff;
     --accent: #00e5ff;
-    --sub: #777777;
+    --sub: #666666;
     --border: rgba(255, 255, 255, 0.08);
 }
 
 body {
     background-color: var(--bg);
     color: var(--text);
-    font-family: 'Inter', sans-serif; /* 洗練された欧文フォント */
+    font-family: 'Inter', sans-serif;
     margin: 0;
-    line-height: 1.6;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
-/* スクロールアニメーション：WD風の滑らかな浮き上がり */
-.reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 1.4s cubic-bezier(0.19, 1, 0.22, 1);
-}
-.reveal.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* PC：左右分割レイアウト（WDインスパイア） */
-@media screen and (min-width: 768px) {
-    .layout-wrapper { display: flex; height: 100vh; }
-    .side-static {
-        flex: 1;
-        padding: 100px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        position: sticky;
-        top: 0;
-        border-right: 1px solid var(--border);
-    }
-    .main-scroll {
-        flex: 1;
-        padding: 150px 100px;
-        overflow-y: auto;
-    }
+/* 起動画面 */
+#audio-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--bg);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
-/* SP：ミニマルなスマホレイアウト（ブルーエッジ風） */
-@media screen and (max-width: 767px) {
-    .side-static { padding: 80px 30px 40px; border-bottom: 1px solid var(--border); }
-    .main-scroll { padding: 60px 30px 100px; }
-    h1 { font-size: 2.8rem; letter-spacing: -0.02em; }
+/* レイアウト */
+.layout-wrapper { display: flex; height: 100vh; }
+.side-static {
+    flex: 1;
+    padding: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right: 1px solid var(--border);
+}
+.main-scroll {
+    flex: 1.5;
+    padding: 120px 80px;
+    overflow-y: auto;
+    transition: opacity 0.5s ease; /* ページ切り替えのフェード */
 }
 
 /* テキスト装飾 */
-h1 { font-weight: 700; letter-spacing: -0.05em; margin: 0; }
-.nav-link {
-    display: block;
+h1 { font-size: 2.2rem; letter-spacing: 0.3em; margin: 0; }
+.accent-dot { color: var(--accent); }
+.sub-text { font-size: 0.65rem; color: var(--sub); letter-spacing: 0.3em; margin-top: 10px; }
+
+.nav-link { cursor: pointer; margin-bottom: 100px; display: block; }
+.nav-num { color: var(--accent); font-family: monospace; font-size: 0.7rem; }
+.nav-title { font-size: 3.5rem; font-weight: 300; margin: 10px 0; transition: 0.5s; letter-spacing: 0.1em; }
+.nav-link:hover .nav-title { color: var(--accent); padding-left: 20px; }
+
+/* ボタン */
+.btn-mail {
+    display: inline-block;
+    border: 1px solid var(--text);
+    color: var(--text);
+    padding: 15px 40px;
     text-decoration: none;
-    color: inherit;
-    margin-bottom: 120px; /* 余白を広くとるのが高級感のコツ */
-    position: relative;
-}
-
-.nav-num {
-    display: block;
-    color: var(--accent);
-    font-family: monospace;
     font-size: 0.7rem;
-    margin-bottom: 10px;
+    letter-spacing: 0.2em;
+    background: transparent;
+    cursor: pointer;
+    transition: 0.4s;
 }
+.btn-mail:hover { background: var(--text); color: var(--bg); }
 
-.nav-title {
-    font-size: 3.5rem; /* 文字を大きくしてインパクトを出す */
-    font-weight: 300;
-    margin: 0;
-    transition: 0.5s;
-}
+/* 音声コントロール（前回のものと同じ） */
+#audio-control { position: fixed; bottom: 40px; right: 40px; display: flex; align-items: center; gap: 12px; cursor: pointer; z-index: 100; color: var(--sub); }
+.visualizer { display: flex; align-items: flex-end; gap: 3px; height: 14px; }
+.v-bar { width: 1px; height: 3px; background: currentColor; }
+.is-playing .v-bar { animation: wave 0.6s infinite alternate; }
+@keyframes wave { 0% { height: 3px; } 100% { height: 14px; } }
 
-.nav-link:hover .nav-title {
-    color: var(--accent);
-    transform: translateX(20px);
-}
-
-.nav-desc {
-    color: var(--sub);
-    font-size: 0.8rem;
-    margin-top: 15px;
-    font-weight: 400;
-}
-
-/* スクロールバーのカスタマイズ（PC用） */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--border); }
+/* アニメーション用 */
+.reveal { opacity: 0; transform: translateY(20px); transition: 1s; }
+.is-visible { opacity: 1; transform: translateY(0); }s

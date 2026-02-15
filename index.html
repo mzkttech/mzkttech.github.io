@@ -3,91 +3,78 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MZKT.TECH | CREATOR ARCHIVE</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>MZKT.TECH</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="light-theme font-medium"> <canvas id="particle-canvas"></canvas>
+<body class="light-theme font-medium">
+
+<canvas id="particle-canvas"></canvas>
 
 <div id="audio-overlay">
 <div class="overlay-inner">
-<h2 id="opening-logo" class="loading-title">MZKT.TECH</h2>
-
-    <p class="guide-text">SELECT LANGUAGE TO START</p>
-    <div class="lang-selector">
-        <button type="button" onclick="handleLangSelect('ja')" id="btn-ja" class="lang-btn">JP</button>
-        <button type="button" onclick="handleLangSelect('en')" id="btn-en" class="lang-btn">EN</button>
-        <button type="button" onclick="handleLangSelect('zh')" id="btn-zh" class="lang-btn">ZH</button>
-    </div>
-
-    <div id="start-actions" class="hidden-ui">
-        <div class="sound-choice">
-            <button type="button" onclick="handleInit(true)" class="choice-btn primary">SYSTEM START</button>
-            <button type="button" onclick="handleInit(false)" class="choice-btn">SILENT START</button>
-        </div>
-    </div>
+<h2 id="opening-logo">MZKT.TECH</h2>
+<p class="status-msg">SELECT LANGUAGE</p>
+<div class="lang-selector">
+<button type="button" onclick="handleLangSelect('ja')" id="btn-ja">JP</button>
+<button type="button" onclick="handleLangSelect('en')" id="btn-en">EN</button>
+<button type="button" onclick="handleLangSelect('zh')" id="btn-zh">ZH</button>
+</div>
+<div id="start-actions" class="init-hidden">
+<button type="button" onclick="handleInit(true)" class="start-btn main">SYSTEM START</button>
+<button type="button" onclick="handleInit(false)" class="start-btn">SILENT</button>
+</div>
 </div>
 </div>
 
-<div id="app-shell">
-<header class="mobile-header">
-<h1 class="logo" onclick="handleNav('home')">MZKT.TECH</h1>
-<button type="button" class="menu-toggle" onclick="toggleMobileMenu()">MENU</button>
-</header>
-
-<aside class="side-nav" id="side-nav">
-    <h1 class="logo desktop-only" onclick="handleNav('home')">MZKT.TECH</h1>
-    
-    <nav class="main-menu">
-        <div class="menu-item" onclick="handleNav('home')">
-            <span class="num">01</span><span class="lang-text" data-ja="ホーム" data-en="HOME" data-zh="首页"></span>
-        </div>
-        <div class="menu-item" onclick="handleNav('works')">
-            <span class="num">02</span><span class="lang-text" data-ja="制作物" data-en="WORKS" data-zh="作品集"></span>
-        </div>
-        <div class="menu-item" onclick="handleNav('log')">
-            <span class="num">03</span><span class="lang-text" data-ja="日誌" data-en="LOG" data-zh="日志"></span>
-        </div>
-        <div class="menu-item" onclick="handleNav('contact')">
-            <span class="num">04</span><span class="lang-text" data-ja="連絡先" data-en="CONTACT" data-zh="联系方式"></span>
-        </div>
-    </nav>
-
-    <div class="nav-bottom">
-        <div class="accessibility-controls">
-            <button type="button" onclick="handleFontSize('small')">A-</button>
-            <button type="button" onclick="handleFontSize('medium')">A</button>
-            <button type="button" onclick="handleFontSize('large')">A+</button>
-        </div>
-        <button type="button" onclick="handleTheme()" class="theme-btn lang-text" data-ja="背景色切替" data-en="SWITCH COLOR" data-zh="切换主题"></button>
-        <div class="copyright-box">
-            <p>VER: 2.5.0-STABLE</p>
-            <p>&copy; 2026 MZKT.TECH</p>
-        </div>
-    </div>
+<div id="app-shell" style="display: none;">
+<aside class="sidebar">
+<h1 class="side-logo">MZKT.TECH</h1>
+<nav class="side-menu">
+<div onclick="handleNav('home')">01 <span class="lang-text" data-ja="ホーム" data-en="HOME" data-zh="首页"></span></div>
+<div onclick="handleNav('works')">02 <span class="lang-text" data-ja="制作物" data-en="WORKS" data-zh="作品集"></span></div>
+<div onclick="handleNav('log')">03 <span class="lang-text" data-ja="日誌" data-en="LOG" data-zh="日志"></span></div>
+<div onclick="handleNav('contact')">04 <span class="lang-text" data-ja="連絡先" data-en="CONTACT" data-zh="联系方式"></span></div>
+</nav>
+<div class="side-footer">
+<button onclick="handleTheme()" class="util-btn">COLOR MODE</button>
+<div class="font-ctrl">
+<button onclick="handleFontSize('small')">A-</button>
+<button onclick="handleFontSize('medium')">A</button>
+<button onclick="handleFontSize('large')">A+</button>
+</div>
+<p class="ver-info">VER 3.0.0 / 2026</p>
+</div>
 </aside>
 
-<main id="content-holder"></main>
+<main id="main-view">
+    <div id="content-holder"></div>
+</main>
 
-<footer class="system-footer">
-    <div class="player-unit">
-        <div class="vol-group">
-            <button type="button" onclick="handleVolume(-1)">−</button>
-            <span id="ui-vol-text">05</span>
-            <button type="button" onclick="handleVolume(1)">+</button>
+<nav class="mobile-nav">
+    <div onclick="handleNav('home')">HOME</div>
+    <div onclick="handleNav('works')">WORKS</div>
+    <div onclick="handleNav('log')">LOG</div>
+    <div onclick="handleNav('contact')">MAIL</div>
+    <div onclick="handleTheme()">COLOR</div>
+</nav>
+
+<footer class="player-bar">
+    <div class="player-inner">
+        <button onclick="handleTogglePlay()" id="play-btn" class="p-btn">▶</button>
+        <div class="track-info">
+            <span class="t-name">SYSTEM BGM</span>
+            <span id="vol-display">VOL: 05</span>
         </div>
-        
-        <button type="button" id="play-pause-btn" class="main-play" onclick="handleTogglePlay()">▶</button>
-        
-        <div class="track-meta">
-            <span class="track-name">SYSTEM_BGM // MZKT</span>
-            <span id="status-tag">ACTIVE</span>
+        <div class="vol-ctrl">
+            <button onclick="handleVolume(-1)">-</button>
+            <button onclick="handleVolume(1)">+</button>
         </div>
     </div>
 </footer>
 </div>
 
-<audio id="bgm" src="assets/bgm.mp3" loop preload="auto"></audio>
+<audio id="bgm" src="assets/bgm.mp3" loop></audio>
 
 <script src="js/main.js"></script>
 

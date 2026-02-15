@@ -1,81 +1,114 @@
 <!DOCTYPE html>
+
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mzkttech | Portfolio</title>
-    <style>
-        body {
-            background-color: #0d1117;
-            color: #c9d1d9;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-        .container {
-            text-align: center;
-            max-width: 600px;
-            padding: 20px;
-        }
-        /* ロゴ画像の設定 */
-        .logo {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 3px solid #58a6ff;
-            margin-bottom: 20px;
-            object-fit: cover;
-        }
-        h1 {
-            color: #58a6ff;
-            font-size: 2.5rem;
-            margin: 0;
-        }
-        /* タイピングアニメーション */
-        .typing {
-            font-family: monospace;
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 3px solid #58a6ff;
-            width: 0;
-            margin: 10px auto;
-            animation: typing 3s steps(20, end) forwards, blink 0.75s step-end infinite;
-        }
-        @keyframes typing { from { width: 0 } to { width: 100% } }
-        @keyframes blink { from, to { border-color: transparent } 50% { border-color: #58a6ff } }
-
-        .about {
-            background: #161b22;
-            border: 1px solid #30363d;
-            border-radius: 6px;
-            padding: 20px;
-            margin-top: 30px;
-            text-align: left;
-        }
-        .about h2 { font-size: 1.2rem; color: #58a6ff; margin-top: 0; }
-        .about p { line-height: 1.6; font-size: 0.9rem; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mzkttech | デジタル名刺</title>
+<style>
+body {
+background-color: #e0f7fa;
+color: #37474f;
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+display: flex;
+justify-content: center;
+align-items: flex-start;
+min-height: 100vh;
+margin: 0;
+padding-top: 30px;
+}
+.container {
+text-align: center;
+max-width: 400px;
+width: 90%;
+padding: 20px;
+}
+.logo {
+width: 140px;
+height: 140px;
+border-radius: 50%;
+border: 4px solid #ffffff;
+margin-bottom: 15px;
+object-fit: cover;
+box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+h1 {
+color: #00838f;
+font-size: 1.8rem;
+margin: 0;
+}
+.typing {
+font-family: monospace;
+white-space: nowrap;
+overflow: hidden;
+border-right: 3px solid #00bcd4;
+width: 0;
+margin: 10px auto;
+animation: typing 3s steps(20, end) forwards, blink 0.75s step-end infinite;
+}
+@keyframes typing { from { width: 0 } to { width: 100% } }
+@keyframes blink { from, to { border-color: transparent } 50% { border-color: #00bcd4 } }
+.card {
+background: rgba(255, 255, 255, 0.9);
+border-radius: 15px;
+padding: 20px;
+margin-top: 20px;
+text-align: left;
+box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+.card h2 { font-size: 1rem; color: #00838f; margin-top: 0; border-bottom: 1px solid #b2ebf2; padding-bottom: 5px; }
+.card p { line-height: 1.5; font-size: 0.85rem; margin: 8px 0; }
+.btn {
+display: block;
+background: #00838f;
+color: white;
+text-decoration: none;
+padding: 12px;
+margin: 10px 0;
+border-radius: 8px;
+font-weight: bold;
+text-align: center;
+}
+#special-banner {
+display: none;
+background: #fff9c4;
+padding: 10px;
+border-radius: 8px;
+margin-bottom: 15px;
+font-size: 0.8rem;
+color: #f57f17;
+font-weight: bold;
+text-align: center;
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <img src="images/icon.png" alt="mzkttech logo" class="logo">
-        
-        <h1>mzkttech</h1>
-        
-        <div class="typing">Student Engineer / Loading...</div>
-
-        <div class="about">
-            <h2>About me</h2>
-            <p>
-                2026年4月から工業高校の情報工学科に進学予定。
-                ハードウェアからソフトウェアまで幅広く興味があります。
-                現在はGitHub Pagesで自分の基地を構築中。
-            </p>
-            <p>Email: mzkt.tech@gmail.com</p>
-        </div>
-    </div>
+<div class="container">
+<div id="special-banner">名刺交換ありがとうございます！</div>
+<img src="images/icon.jpg" alt="ロゴ" class="logo">
+<h1>mzkttech</h1>
+<div class="typing">工業高校 情報工学科 (入学予定)</div>
+<div class="card">
+<h2>自己紹介</h2>
+<p>2026年4月から工業高校でプログラミングやハードウェアを学びます。現在、Web制作を基礎から特訓中です。</p>
+<p>将来は、自分の技術で面白いものを作れるエンジニアを目指しています。</p>
+</div>
+<div class="card">
+<h2>リンク集</h2>
+<a href="" class="btn">GitHub（開発実績）</a>
+<a href="mailto:mzkt.tech@gmail.com" class="btn">メールを送る</a>
+</div>
+<div class="card">
+<h2>興味・関心</h2>
+<p>Web制作: HTML / CSS / JavaScript</p>
+<p>挑戦中: Python / 自作PC / 電子工作</p>
+</div>
+</div>
+<script>
+const params = new URLSearchParams(window.location.search);
+if (params.get('from') === 'card') {
+document.getElementById('special-banner').style.display = 'block';
+}
+</script>
 </body>
 </html>

@@ -5,27 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MZKT.TECH</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js" defer></script>
 </head>
 <body>
 
 <div id="audio-overlay">
-    <div class="overlay-content">
-        <h2 class="reveal">MZKT<span class="accent-dot">.</span>TECH</h2>
-        <p class="reveal">EXPERIENCE WITH SOUND</p>
-        <div class="reveal" style="display: flex; gap: 20px; justify-content: center; margin-top: 40px;">
+    <div class="overlay-content reveal">
+        <h2 style="letter-spacing: 0.5em; font-weight: 300;">MZKT<span class="accent-dot">.</span>TECH</h2>
+        <p style="font-size: 0.7rem; color: var(--sub); margin-top: 10px;">EXPERIENCE WITH SOUND</p>
+        <div style="display: flex; gap: 20px; justify-content: center; margin-top: 50px;">
             <button onclick="initSite(true)" class="btn-mail">SOUND ON</button>
             <button onclick="initSite(false)" class="btn-mail" style="opacity: 0.5;">SOUND OFF</button>
         </div>
     </div>
 </div>
 
-<div class="layout-wrapper" id="app-body" style="display: none;">
+<div class="layout-wrapper" id="app-body" style="display: none; opacity: 0;">
     <aside class="side-static">
         <div>
-            <h1 onclick="navigateTo('home')" style="cursor:pointer;" class="reveal">MZKT<span class="accent-dot">.</span>TECH</h1>
-            <p class="sub-text reveal">EST. 2026 / INFO ENGINEERING</p>
+            <h1 onclick="navigateTo('home')" style="cursor:pointer;">MZKT<span class="accent-dot">.</span>TECH</h1>
+            <p class="sub-text">EST. 2026 / INFO ENGINEERING</p>
         </div>
-        <div id="page-indicator" class="reveal">/ HOME</div>
+        <div id="page-indicator">/ HOME</div>
     </aside>
 
     <main class="main-scroll" id="content-area">
@@ -41,6 +42,5 @@
 
 <audio id="bgm" src="assets/bgm.mp3" loop></audio>
 
-<script src="js/main.js"></script>
 </body>
 </html>

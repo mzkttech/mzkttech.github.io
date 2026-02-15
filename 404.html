@@ -4,78 +4,91 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>404 Not Found | mzkttech</title>
+<title>404 NOT FOUND | MZKT.TECH</title>
+<link rel="stylesheet" href="css/style.css">
 <style>
-body {
-background-color: #e0f7fa;
-color: #37474f;
-font-family: sans-serif;
-margin: 0;
-display: flex;
-justify-content: center;
-align-items: center; /* 上下中央 /
+/* 404専用の追加スタイル */
+.error-container {
 height: 100vh;
-}
-.container {
-width: 90%;
-max-width: 400px; / スマホで見やすい幅 */
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
 text-align: center;
+padding: 20px;
 }
-.card {
-background: rgba(255, 255, 255, 0.9);
-border-radius: 20px;
-padding: 40px 20px;
-box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-}
-h1 {
-font-size: 5rem;
-color: #00838f;
-margin: 0;
+.error-code {
+font-size: clamp(5rem, 20vw, 10rem);
+font-weight: 900;
 line-height: 1;
+color: var(--accent);
+margin: 0;
+letter-spacing: -0.05em;
 }
-.msg-title {
+.error-msg {
+font-size: 1.5rem;
 font-weight: bold;
-color: #006064;
-font-size: 1.1rem;
-margin-top: 10px;
+margin-bottom: 30px;
 }
-p {
-font-size: 0.85rem;
-color: #546e7a;
-line-height: 1.6;
-margin: 20px 0;
-}
-.back-btn {
-display: block;
+.back-home {
+padding: 15px 40px;
+border: 2px solid var(--text);
+background: var(--text);
+color: var(--bg);
 text-decoration: none;
-background: #00838f;
-color: white !important;
-padding: 15px;
-border-radius: 10px;
 font-weight: bold;
 transition: 0.3s;
 }
-.back-btn:active {
-transform: scale(0.98);
-background: #006064;
+.back-home:hover {
+background: none;
+color: var(--text);
+}
+.glitch-text {
+animation: glitch 2s infinite;
+}
+@keyframes glitch {
+0% { transform: translate(0); }
+20% { transform: translate(-2px, 2px); }
+40% { transform: translate(-2px, -2px); }
+60% { transform: translate(2px, 2px); }
+80% { transform: translate(2px, -2px); }
+100% { transform: translate(0); }
 }
 </style>
 </head>
-<body>
-<div class="container">
-<div class="card">
-<h1>404</h1>
-<div class="msg-title">ページが見つかりません</div>
-<p>
-アクセスしようとしたURLは、
+<body class="light-theme"> <canvas id="particle-canvas"></canvas>
+
+<div class="error-container">
+<h1 class="error-code glitch-text">404</h1>
+<p class="error-msg">SYSTEM ERROR: PAGE NOT FOUND</p>
+<p>指定されたアーカイブは存在しないか、移動した可能性があります。</p>
 
 
 
-現在存在しないようです。
-</p>
-<a href="index.html" class="back-btn">トップページに戻る</a>
+<a href="index.html" class="back-home">BACK TO HOME</a>
 </div>
-</div>
+
+<script>
+// 404ページでもパーティクルだけは動かす
+const canvas = document.getElementById('particle-canvas');
+const ctx = canvas.getContext('2d');
+let pts = [];
+function draw() {
+canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+pts = pts.filter(p => p.o > 0);
+pts.forEach(p => {
+p.x += p.vx; p.y += p.vy; p.o -= 0.01;
+ctx.fillStyle = rgba(0, 188, 212, ${p.o});
+ctx.fillRect(p.x, p.y, 2, 2);
+});
+requestAnimationFrame(draw);
+}
+window.addEventListener('mousemove', (e) => {
+for(let i=0; i<2; i++) pts.push({x:e.clientX, y:e.clientY, vx:Math.random()-0.5, vy:Math.random()-0.5, o:0.5});
+});
+draw();
+</script>
+
 </body>
 </html>
-<link rel="stylesheet" href="css/style.css">

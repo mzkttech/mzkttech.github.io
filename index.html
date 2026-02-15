@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>MZKT.TECH</title>
+<title>MZKT.TECH | CREATOR ARCHIVE</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="light-theme font-medium">
@@ -14,7 +14,7 @@
 <div id="audio-overlay">
 <div class="overlay-inner">
 <h2 id="opening-logo">MZKT.TECH</h2>
-<p class="status-msg">SELECT LANGUAGE</p>
+<p class="select-label">SELECT SYSTEM LANGUAGE</p>
 <div class="lang-selector">
 <button type="button" onclick="handleLangSelect('ja')" id="btn-ja">JP</button>
 <button type="button" onclick="handleLangSelect('en')" id="btn-en">EN</button>
@@ -22,59 +22,59 @@
 </div>
 <div id="start-actions" class="init-hidden">
 <button type="button" onclick="handleInit(true)" class="start-btn main">SYSTEM START</button>
-<button type="button" onclick="handleInit(false)" class="start-btn">SILENT</button>
+<button type="button" onclick="handleInit(false)" class="start-btn">SILENT START</button>
 </div>
 </div>
 </div>
 
 <div id="app-shell" style="display: none;">
-<aside class="sidebar">
-<h1 class="side-logo">MZKT.TECH</h1>
+<aside class="sidebar desktop-only">
+<h1 class="logo-text" onclick="handleNav('home')">MZKT.TECH</h1>
 <nav class="side-menu">
-<div onclick="handleNav('home')">01 <span class="lang-text" data-ja="ホーム" data-en="HOME" data-zh="首页"></span></div>
-<div onclick="handleNav('works')">02 <span class="lang-text" data-ja="制作物" data-en="WORKS" data-zh="作品集"></span></div>
-<div onclick="handleNav('log')">03 <span class="lang-text" data-ja="日誌" data-en="LOG" data-zh="日志"></span></div>
-<div onclick="handleNav('contact')">04 <span class="lang-text" data-ja="連絡先" data-en="CONTACT" data-zh="联系方式"></span></div>
+<div class="menu-item" onclick="handleNav('home')">01 <span class="lang-text" data-ja="ホーム" data-en="HOME" data-zh="首页"></span></div>
+<div class="menu-item" onclick="handleNav('works')">02 <span class="lang-text" data-ja="制作物" data-en="WORKS" data-zh="作品集"></span></div>
+<div class="menu-item" onclick="handleNav('log')">03 <span class="lang-text" data-ja="日誌" data-en="LOG" data-zh="日志"></span></div>
+<div class="menu-item" onclick="handleNav('contact')">04 <span class="lang-text" data-ja="連絡先" data-en="CONTACT" data-zh="联系方式"></span></div>
 </nav>
 <div class="side-footer">
-<button onclick="handleTheme()" class="util-btn">COLOR MODE</button>
-<div class="font-ctrl">
+<button type="button" onclick="handleTheme()" class="ui-action-btn">COLOR MODE</button>
+<div class="size-row">
 <button onclick="handleFontSize('small')">A-</button>
 <button onclick="handleFontSize('medium')">A</button>
 <button onclick="handleFontSize('large')">A+</button>
 </div>
-<p class="ver-info">VER 3.0.0 / 2026</p>
+<p class="sys-ver">SYSTEM v3.5.2 / 2026</p>
 </div>
 </aside>
 
-<main id="main-view">
-    <div id="content-holder"></div>
+<main id="main-content">
+    <div id="view-container"></div>
 </main>
 
-<nav class="mobile-nav">
-    <div onclick="handleNav('home')">HOME</div>
-    <div onclick="handleNav('works')">WORKS</div>
-    <div onclick="handleNav('log')">LOG</div>
-    <div onclick="handleNav('contact')">MAIL</div>
-    <div onclick="handleTheme()">COLOR</div>
+<nav class="mobile-nav-bar mobile-only">
+    <div class="m-nav-item" onclick="handleNav('home')">HOME</div>
+    <div class="m-nav-item" onclick="handleNav('works')">WORKS</div>
+    <div class="m-nav-item" onclick="handleNav('log')">LOG</div>
+    <div class="m-nav-item" onclick="handleNav('contact')">MAIL</div>
+    <div class="m-nav-item" onclick="handleTheme()">COLOR</div>
 </nav>
 
 <footer class="player-bar">
-    <div class="player-inner">
-        <button onclick="handleTogglePlay()" id="play-btn" class="p-btn">▶</button>
-        <div class="track-info">
-            <span class="t-name">SYSTEM BGM</span>
-            <span id="vol-display">VOL: 05</span>
+    <div class="player-flex">
+        <button type="button" id="play-btn" class="p-toggle" onclick="handleTogglePlay()">▶</button>
+        <div class="p-meta">
+            <span class="p-track">MZKT_BGM.sys</span>
+            <span id="p-vol-status">VOL: 05</span>
         </div>
-        <div class="vol-ctrl">
-            <button onclick="handleVolume(-1)">-</button>
+        <div class="p-vol-btns">
+            <button onclick="handleVolume(-1)">−</button>
             <button onclick="handleVolume(1)">+</button>
         </div>
     </div>
 </footer>
 </div>
 
-<audio id="bgm" src="assets/bgm.mp3" loop></audio>
+<audio id="bgm" src="assets/bgm.mp3" loop preload="auto"></audio>
 
 <script src="js/main.js"></script>
 

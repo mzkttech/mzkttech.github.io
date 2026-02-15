@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -34,6 +33,13 @@ box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 object-fit: cover;
 }
 h1 { color: #00838f; margin: 10px 0 5px; font-size: 1.8rem; }
+#real-name {
+display: none;
+color: #006064;
+font-weight: bold;
+margin-bottom: 10px;
+font-size: 1.1rem;
+}
 .typing {
 font-family: monospace;
 white-space: nowrap;
@@ -45,6 +51,7 @@ animation: typing 3s steps(20, end) forwards, blink 0.75s step-end infinite;
 }
 @keyframes typing { from { width: 0 } to { width: 100% } }
 @keyframes blink { from, to { border-color: transparent } 50% { border-color: #00bcd4 } }
+
 .section {
 background: rgba(255, 255, 255, 0.9);
 border-radius: 15px;
@@ -59,9 +66,6 @@ margin-top: 0;
 border-bottom: 2px solid #b2ebf2;
 padding-bottom: 5px;
 }
-.item { margin-bottom: 15px; }
-.item h3 { font-size: 0.95rem; margin: 5px 0; color: #006064; }
-.item p { font-size: 0.85rem; margin: 0; line-height: 1.4; }
 .btn {
 display: block;
 background: #00838f;
@@ -72,7 +76,10 @@ margin: 10px 0;
 border-radius: 8px;
 font-weight: bold;
 text-align: center;
+transition: 0.3s;
 }
+.btn:hover { background: #006064; }
+
 #special-banner {
 display: none;
 background: #fff9c4;
@@ -89,41 +96,32 @@ text-align: center;
 <body>
 <div class="container">
 <header>
-<div id="special-banner">名刺からのアクセスありがとうございます！</div>
+<div id="special-banner">名刺交換ありがとうございます！</div>
 <img src="images/icon.png" alt="ロゴ" class="logo">
 <h1>mzkttech</h1>
+<div id="real-name">本名 〇〇（ミヤザキ 〇〇）</div>
 <div class="typing">工業高校生クリエイター</div>
 </header>
+
 <div class="section">
-<h2>自己紹介</h2>
-<p style="font-size: 0.85rem;">2026年4月より工業高校 情報工学科。Web制作と動画編集を軸に活動しています。</p>
+<h2>インデックス</h2>
+<p style="font-size: 0.85rem;">以下のボタンから詳細をご覧いただけます。</p>
+<a href="profile.html" class="btn">詳しいプロフィール</a>
+<a href="works.html" class="btn">制作実績・スキル</a>
+<a href="contact.html" class="btn">ご依頼・ご相談</a>
 </div>
+
 <div class="section">
-<h2>開発実績 / スキル</h2>
-<div class="item">
-<h3>Web制作</h3>
-<p>HTML/CSSを用いたポートフォリオサイトの構築（本サイト）。</p>
-</div>
-<div class="item">
-<h3>動画編集</h3>
-<p>カット、テロップ入れ、BGM挿入など。YouTube動画等の編集が可能です。</p>
+<h2>ひとこと</h2>
+<p style="font-size: 0.85rem;">2026年4月、情報工学科入学。AI(Gemini)を活用した効率的なクリエイティブを追求中。</p>
 </div>
 </div>
-<div class="section">
-<h2>ご依頼・お問い合わせ</h2>
-<p style="font-size: 0.85rem; margin-bottom: 15px;">動画編集やWeb制作のご相談は、以下のボタンよりお気軽にご連絡ください。</p>
-<a href="mailto:mzkt.tech@gmail.com" class="btn">メールで依頼する</a>
-<a href="" class="btn" style="background: #333;">GitHubを確認</a>
-</div>
-<div class="section">
-<h2>興味のある技術</h2>
-<p style="font-size: 0.85rem;">Python / 自作PC / 電子工作 / サイバーセキュリティ</p>
-</div>
-</div>
+
 <script>
 const params = new URLSearchParams(window.location.search);
 if (params.get('from') === 'card') {
 document.getElementById('special-banner').style.display = 'block';
+document.getElementById('real-name').style.display = 'block';
 }
 </script>
 </body>

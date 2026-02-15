@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>MZKT.TECH | CREATOR ARCHIVE</title>
+    <title>MZKT.TECH | クリエイターアーカイブ</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="dark-theme">
@@ -16,8 +16,8 @@
     <div class="overlay-inner">
         <h2 class="loading-title">MZKT.TECH</h2>
         <div class="sound-choice">
-            <button onclick="window.initSite(true)" class="choice-btn">SYSTEM START [AUDIO ON]</button>
-            <button onclick="window.initSite(false)" class="choice-btn">SYSTEM START [SILENT]</button>
+            <button onclick="window.initSite(true)" class="choice-btn">システム起動 [音声あり]</button>
+            <button onclick="window.initSite(false)" class="choice-btn">システム起動 [消音]</button>
         </div>
     </div>
 </div>
@@ -30,29 +30,29 @@
         
         <nav class="main-menu">
             <div class="menu-item" onclick="window.navigateTo('home')">
-                <span class="num">01</span><a id="nav-home">HOME</a>
+                <span class="num">01</span><a id="nav-home">ホーム</a>
             </div>
             <div class="menu-item" onclick="window.navigateTo('about')">
-                <span class="num">02</span><a id="nav-about">SPEC</a>
+                <span class="num">02</span><a id="nav-about">スペック</a>
             </div>
             <div class="menu-item" onclick="window.navigateTo('works')">
-                <span class="num">03</span><a id="nav-works">WORKS</a>
+                <span class="num">03</span><a id="nav-works">制作物</a>
             </div>
             <div class="menu-item" onclick="window.navigateTo('legal')">
-                <span class="num">04</span><a id="nav-legal">LEGAL</a>
+                <span class="num">04</span><a id="nav-legal">法的表記</a>
             </div>
             <div class="menu-item" onclick="window.navigateTo('contact')">
-                <span class="num">05</span><a id="nav-contact">CONTACT</a>
+                <span class="num">05</span><a id="nav-contact">連絡</a>
             </div>
         </nav>
 
         <div class="nav-bottom">
-            <button onclick="window.toggleTheme()" class="theme-btn">SWITCH COLOR MODE</button>
+            <button onclick="window.toggleTheme()" class="theme-btn">表示モード切替</button>
             <div class="copyright-box">
-                <p>PROJECT START: 2025.10.11</p>
-                <p>SYSTEM VERSION: 2.1.0-STABLE</p>
-                <p>CORE: STUDENT CREATOR ARCHIVE</p>
-                <p>AUDIO: SUNO_AI_BGM_UNIT</p>
+                <p>制作開始日: 2025.10.11</p>
+                <p>システムバージョン: 2.1.0-STABLE</p>
+                <p>種別: 学生クリエイターアーカイブ</p>
+                <p>音源: SUNO_AI_BGM_UNIT</p>
                 <p style="margin-top:10px; opacity:0.5;">&copy; 2026 MZKT.TECH</p>
             </div>
         </div>
@@ -64,14 +64,14 @@
         <div class="footer-line"></div>
         <div class="player-controls">
             <div class="status-group">
-                <span id="play-status" class="purple-text">MZKT.TECH ▶PLAYING</span>
+                <span id="play-status" class="purple-text">MZKT.TECH ▶再生中</span>
                 <span class="divider">¦</span>
                 <span id="progress-text" class="progress-bar">--------------------</span>
                 <span id="time-display" class="time-text">0:00 / 0:00</span>
             </div>
             
             <div class="volume-group">
-                <span class="vol-label">VOLUME</span>
+                <span class="vol-label">音量設定</span>
                 <div class="vol-controls">
                     <button class="vol-btn" onclick="window.adjustVolume(-1)">−</button>
                     <span id="ui-text" class="vol-value">05</span>

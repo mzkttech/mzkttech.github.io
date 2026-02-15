@@ -3,7 +3,6 @@
 :root {
 --accent: #00e5ff;
 --border: rgba(255, 255, 255, 0.2);
---bg-dark: #000;
 }
 
 body.font-small { font-size: 14px; }
@@ -20,55 +19,72 @@ font-family: 'Noto Sans JP', sans-serif; color: var(--text); transition: 0.3s;
 
 #particle-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.3; }
 
-/* Overlay */
+/* オープニング演出 /
 #audio-overlay {
 position: fixed; inset: 0; background: #000; z-index: 9999;
-display: flex; align-items: center; justify-content: center;
+display: flex; align-items: center; justify-content: center; transition: 0.8s;
 }
-.loading-title { font-family: 'Share Tech Mono'; font-size: 3rem; color: #fff; margin-bottom: 2rem; }
+.loading-title {
+font-family: 'Share Tech Mono'; font-size: 4rem;
+color: #1a1a1a; / 最初は文字が背景に溶け込む暗い色 /
+margin-bottom: 2.5rem; transition: 1s cubic-bezier(0.4, 0, 0.2, 1);
+letter-spacing: 10px;
+}
+/ 言語選択後のロゴカラー */
+.loading-title.active {
+color: var(--accent);
+text-shadow: 0 0 20px var(--accent);
+letter-spacing: 4px;
+}
 
-button { cursor: pointer; border: 1px solid var(--border); background: var(--btn-bg); color: var(--text); font-family: inherit; transition: 0.2s; }
-button:hover { border-color: var(--accent); transform: translateY(-1px); }
+.lang-selector { display: flex; gap: 15px; margin-bottom: 30px; justify-content: center; }
+.lang-btn {
+background: none; border: 1px solid #333; color: #555;
+padding: 10px 25px; transition: 0.3s; font-family: 'Share Tech Mono';
+}
+.lang-btn.selected { border-color: var(--accent); color: #fff; background: rgba(0, 229, 255, 0.1); }
 
-/* Layout */
+.choice-btn { padding: 15px 30px; border: 1px solid #fff; background: none; color: #fff; font-weight: bold; }
+.choice-btn.primary { background: #fff; color: #000; }
+
+/* メインレイアウト */
 #app-shell { display: flex; height: 100vh; position: relative; z-index: 10; }
 .side-nav { width: 280px; border-right: 1px solid var(--border); padding: 40px; display: flex; flex-direction: column; background: var(--panel); }
-.logo { font-family: 'Share Tech Mono'; cursor: pointer; margin-bottom: 30px; font-size: 1.5rem; letter-spacing: 2px; }
+.logo { font-family: 'Share Tech Mono'; cursor: pointer; margin-bottom: 30px; font-size: 1.5rem; color: var(--accent); }
 
 .main-menu { flex: 1; }
 .menu-item { margin-bottom: 25px; cursor: pointer; display: flex; align-items: center; }
 .menu-item .num { font-family: 'Share Tech Mono'; color: var(--accent); margin-right: 15px; font-size: 0.8rem; }
-.menu-item a { text-decoration: none; color: var(--text); opacity: 0.6; font-weight: bold; font-size: 1.2rem; }
-.menu-item:hover a { opacity: 1; color: var(--accent); }
+.menu-item a { text-decoration: none; color: var(--text); opacity: 0.6; font-weight: bold; font-size: 1.2rem; transition: 0.3s; }
+.menu-item:hover a { opacity: 1; color: var(--accent); padding-left: 5px; }
 
 #content-holder { flex: 1; padding: 60px 10%; overflow-y: auto; padding-bottom: 180px; }
 .title { font-size: 5rem; font-weight: 900; line-height: 1; margin: 0 0 40px; }
 
-/* 制作物カード */
-.work-card { background: var(--panel); border: 1px solid var(--border); padding: 30px; margin-bottom: 20px; border-radius: 4px; }
-.work-card h3 { color: var(--accent); margin-top: 0; font-size: 1.8rem; }
-.work-tag { font-family: 'Share Tech Mono'; font-size: 0.8rem; background: var(--accent); color: #000; padding: 2px 8px; border-radius: 2px; margin-right: 10px; }
+/* ログ・ワークスカード */
+.log-entry, .work-card { background: var(--panel); border: 1px solid var(--border); padding: 25px; margin-bottom: 25px; border-left: 4px solid var(--accent); }
+.log-date { font-family: 'Share Tech Mono'; color: var(--accent); font-size: 0.9rem; }
 
-/* フッター集約デザイン */
+/* フッターユニット */
 .system-footer {
 position: fixed; bottom: 0; left: 0; width: 100%; padding: 30px 0;
 background: var(--bg); border-top: 1px solid var(--border);
-display: flex; justify-content: center;
+display: flex; justify-content: center; z-index: 100;
 }
 .player-center-unit {
-display: flex; align-items: center; gap: 40px;
-padding: 10px 40px; border-radius: 50px; background: var(--panel);
+display: flex; align-items: center; gap: 40px; padding: 10px 40px;
+border-radius: 50px; background: var(--panel); border: 1px solid var(--border);
 }
 .vol-controls { display: flex; align-items: center; border: 1px solid var(--accent); border-radius: 30px; overflow: hidden; }
-.vol-btn { width: 40px; height: 40px; border: none; font-size: 1.2rem; }
+.vol-btn { width: 40px; height: 40px; border: none; font-size: 1.2rem; color: var(--text); background: none; }
 .vol-btn.plus { background: var(--accent); color: #000; font-weight: bold; }
 .vol-value { width: 40px; text-align: center; font-family: 'Share Tech Mono'; font-weight: bold; }
 
 .control-main-btn {
-width: 70px; height: 70px; border-radius: 50%; border: 3px solid var(--accent);
-color: var(--accent); font-size: 1.8rem; display: flex; align-items: center; justify-content: center;
+width: 65px; height: 65px; border-radius: 50%; border: 3px solid var(--accent);
+color: var(--accent); font-size: 1.6rem; display: flex; align-items: center; justify-content: center; background: none;
 }
-.music-info { display: flex; flex-direction: column; font-family: 'Share Tech Mono'; }
-.status-tag { font-size: 0.7rem; color: var(--accent); border: 1px solid var(--accent); padding: 2px 5px; width: fit-content; margin-top: 5px; }
+.music-info { display: flex; flex-direction: column; font-family: 'Share Tech Mono'; font-size: 0.8rem; }
+.status-tag { font-size: 0.7rem; color: var(--accent); border: 1px solid var(--accent); padding: 2px 6px; width: fit-content; margin-top: 4px; }
 
-.mail-btn { display: inline-block; margin-top: 20px; padding: 15px 40px; background: var(--accent); color: #000; text-decoration: none; font-weight: bold; font-size: 1.2rem; }
+.mail-btn { display: inline-block; margin-top: 20px; padding: 15px 40px; background: var(--accent); color: #000; text-decoration: none; font-weight: bold; }

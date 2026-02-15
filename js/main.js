@@ -1,25 +1,27 @@
 const pages = {
-    home: `<div class="content-inner">
-             <p class="tag">INTRODUCTION</p>
-             <h2 class="title">CRAFTING DIGITAL<br>EXPERIENCES.</h2>
-             <p class="desc">工業高校で情報工学を専攻。テクノロジーとアートの交差点を追求しています。</p>
+    home: `<div class="reveal">
+             <p class="tag">STARTING LINE</p>
+             <h2 class="title">NEW<br>JOURNEY.</h2>
+             <p class="desc">2026年、情報工学の世界へ。<br>技術と創造性が交差する場所で、新しい物語を始めます。</p>
            </div>`,
-    profile: `<div class="content-inner">
-                <p class="tag">ABOUT ME</p>
-                <h2 class="title">STUDENT /<br>CREATOR.</h2>
-                <p class="desc">2026年卒業見込み。映像制作とWeb開発を主軸に活動中。</p>
+    vision: `<div class="reveal">
+                <p class="tag">VISION</p>
+                <h2 class="title">BEYOND<br>THE TECH.</h2>
+                <p class="desc">単なるコードの羅列ではなく、人の心を動かす体験を。<br>これから始まる学びのすべてを、表現の力に変えていきます。</p>
               </div>`,
-    works: `<div class="content-inner">
+    works: `<div class="reveal">
                <p class="tag">PORTFOLIO</p>
-               <h2 class="title">SELECTED<br>PROJECTS.</h2>
-               <p class="desc"> graduations / visuals / systems </p>
+               <h2 class="title">FIRST<br>STEP.</h2>
+               <p class="desc">このSPAサイトは、入学前に構築した最初のプロジェクトです。<br>エンジニアリングへの挑戦は、ここから始まります。</p>
             </div>`,
-    contact: `<div class="content-inner">
-                <p class="tag">GET IN TOUCH</p>
-                <h2 class="title">SAY HELLO.</h2>
+    contact: `<div class="reveal">
+                <p class="tag">CONTACT</p>
+                <h2 class="title">GET IN<br>TOUCH.</h2>
                 <p class="desc">mzkt.tech@gmail.com</p>
               </div>`
 };
+
+let volLevel = 10;
 
 window.initSite = function(isSoundOn) {
     const overlay = document.getElementById('audio-overlay');
@@ -29,38 +31,48 @@ window.initSite = function(isSoundOn) {
     overlay.style.opacity = '0';
     setTimeout(() => {
         overlay.style.display = 'none';
-        shell.style.visibility = 'visible';
-        shell.style.opacity = '1';
+        shell.style.display = 'flex';
+        setTimeout(() => shell.style.opacity = '1', 50);
         document.getElementById('audio-ui').style.display = 'flex';
-        navigateTo('home');
+        window.navigateTo('home');
     }, 1000);
 
     if (isSoundOn) {
-        bgm.play();
+        bgm.volume = 1.0;
+        bgm.play().catch(e => console.log("Audio blocked"));
         document.getElementById('audio-ui').classList.add('is-playing');
+    } else {
+        volLevel = 0;
+        updateVolumeUI();
     }
 };
 
 window.navigateTo = function(pageKey) {
     const holder = document.getElementById('content-holder');
     holder.style.opacity = '0';
-    holder.style.transform = 'translateY(20px)';
     
     setTimeout(() => {
-        holder.innerHTML = pages[pageKey];
+        holder.innerHTML = pages[pageKey] || '';
         holder.style.opacity = '1';
-        holder.style.transform = 'translateY(0)';
-    }, 600);
+        const inner = holder.querySelector('.reveal');
+        if(inner) setTimeout(() => inner.classList.add('is-visible'), 100);
+    }, 400);
 };
 
-window.toggleAudio = function() {
+window.cycleVolume = function() {
     const bgm = document.getElementById('bgm');
-    const ui = document.getElementById('audio-ui');
-    if (bgm.paused) {
-        bgm.play();
-        ui.classList.add('is-playing');
-    } else {
-        bgm.pause();
-        ui.classList.remove('is-playing');
-    }
+    volLevel = (volLevel > 0) ? volLevel - 1 : 10;
+    bgm.volume = volLevel / 10;
+    updateVolumeUI();
+    if (volLevel > 0 && bgm.paused) bgm.play();
 };
+
+function updateVolumeUI() {
+    const uiText = document.getElementById('ui-text');
+    const volBar = document.getElementById('vol-bar');
+    const uiContainer = document.getElementById('audio-ui');
+    uiText.innerText = volLevel === 0 ? 'MUTE' : volLevel;
+    volBar.style.width = (volLevel * 10) + '%';
+    if (volLevel === 0) uiContainer.classList.remove('is-playing');
+    else uiContainer.classList.add('is-playing');
+}

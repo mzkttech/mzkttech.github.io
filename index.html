@@ -3,47 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mzkttech | Portfolio</title>
+    <title>MZKT.TECH</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<div class="layout-wrapper">
+<div id="audio-overlay">
+    <div class="overlay-content">
+        <h2 class="reveal">MZKT<span class="accent-dot">.</span>TECH</h2>
+        <p class="reveal">EXPERIENCE WITH SOUND</p>
+        <div class="reveal" style="display: flex; gap: 20px; justify-content: center; margin-top: 40px;">
+            <button onclick="initSite(true)" class="btn-mail">SOUND ON</button>
+            <button onclick="initSite(false)" class="btn-mail" style="opacity: 0.5;">SOUND OFF</button>
+        </div>
+    </div>
+</div>
+
+<div class="layout-wrapper" id="app-body" style="display: none;">
     <aside class="side-static">
         <div>
-            <h1 class="reveal">mzkttech</h1>
-            <div class="for-card-only reveal" style="display:none; margin-top:10px; color:var(--accent); font-weight:bold;">
-                Miyazaki ●●
-            </div>
+            <h1 onclick="navigateTo('home')" style="cursor:pointer;" class="reveal">MZKT<span class="accent-dot">.</span>TECH</h1>
+            <p class="sub-text reveal">EST. 2026 / INFO ENGINEERING</p>
         </div>
-        <p class="reveal" style="color:var(--sub); font-size:0.75rem;">
-            2026.04 INFORMATION ENGINEERING<br>
-            CREATIVE × TECHNOLOGY
-        </p>
+        <div id="page-indicator" class="reveal">/ HOME</div>
     </aside>
 
-    <main class="main-scroll">
-        <nav>
-            <a href="profile.html" class="nav-link reveal">
-                <span class="nav-num">/ 01</span>
-                <h2 class="nav-title">PROFILE</h2>
-                <p class="nav-desc">歩みと、これからのビジョンについて。</p>
-            </a>
-
-            <a href="works.html" class="nav-link reveal">
-                <span class="nav-num">/ 02</span>
-                <h2 class="nav-title">WORKS</h2>
-                <p class="nav-desc">動画編集、AI活用、制作実績。</p>
-            </a>
-
-            <a href="contact.html" class="nav-link reveal">
-                <span class="nav-num">/ 03</span>
-                <h2 class="nav-title">CONTACT</h2>
-                <p class="nav-desc">ご依頼・ご相談、Amazonギフト券での受付。</p>
-            </a>
-        </nav>
-    </main>
+    <main class="main-scroll" id="content-area">
+        </main>
 </div>
+
+<div id="audio-control" onclick="toggleAudio()" style="display:none;">
+    <div class="visualizer">
+        <span class="v-bar"></span><span class="v-bar"></span><span class="v-bar"></span><span class="v-bar"></span>
+    </div>
+    <span id="audio-text">SOUND OFF</span>
+</div>
+
+<audio id="bgm" src="assets/bgm.mp3" loop></audio>
 
 <script src="js/main.js"></script>
 </body>

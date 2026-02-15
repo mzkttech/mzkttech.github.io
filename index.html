@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>MZKT.TECH</title>
+    <title>MZKT.TECH | CREATIVE PORTFOLIO</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="dark-theme">
 
+<div id="cursor"></div>
+<div id="cursor-follower"></div>
 <canvas id="particle-canvas"></canvas>
 
 <div id="audio-overlay">
@@ -21,37 +23,54 @@
 </div>
 
 <div id="app-shell" style="display: none; opacity: 0;">
-    <header class="mobile-header">
-        <h1 class="logo" onclick="window.navigateTo('home')">MZKT<span>.</span></h1>
-    </header>
-
     <aside class="side-nav">
         <div class="nav-top">
             <h1 class="logo" onclick="window.navigateTo('home')">MZKT<span>.</span></h1>
         </div>
         <nav class="main-menu">
-            <a onclick="window.navigateTo('home')" id="nav-home">HOME</a>
-            <a onclick="window.navigateTo('about')" id="nav-about">ABOUT</a>
-            <a onclick="window.navigateTo('works')" id="nav-works">WORKS</a>
-            <a onclick="window.navigateTo('contact')" id="nav-contact">CONTACT</a>
+            <div class="menu-item" onclick="window.navigateTo('home')">
+                <span class="num">01</span><a id="nav-home">HOME</a>
+            </div>
+            <div class="menu-item" onclick="window.navigateTo('about')">
+                <span class="num">02</span><a id="nav-about">ABOUT</a>
+            </div>
+            <div class="menu-item" onclick="window.navigateTo('works')">
+                <span class="num">03</span><a id="nav-works">WORKS</a>
+            </div>
+            <div class="menu-item" onclick="window.navigateTo('contact')">
+                <span class="num">04</span><a id="nav-contact">CONTACT</a>
+            </div>
         </nav>
         <div class="nav-bottom">
-            <p class="copyright">&copy; 2026 MZKT.TECH</p>
+            <button onclick="window.toggleTheme()" class="theme-btn">SWITCH THEME</button>
+            <div class="copyright-box">
+                <p>SYSTEM: MZKT_v2.0.4</p>
+                <p>&copy; 2026 MZKT.TECH ALL RIGHTS RESERVED.</p>
+            </div>
         </div>
     </aside>
 
-    <main id="content-holder">
-        </main>
-</div>
+    <main id="content-holder"></main>
 
-<div id="audio-ui" onclick="window.cycleVolume()" style="display:none;">
-    <div class="vol-info">
-        <span id="ui-text">10</span>
-        <div class="vol-gauge"><div id="vol-bar" style="width: 100%;"></div></div>
-    </div>
-    <div class="wave-container">
-        <span class="stroke"></span><span class="stroke"></span><span class="stroke"></span><span class="stroke"></span>
-    </div>
+    <footer class="system-footer">
+        <div class="footer-line"></div>
+        <div class="player-controls">
+            <div class="status-group">
+                <span id="play-status" class="purple-text">MZKT.TECH ▶PLAYING</span>
+                <span class="divider">¦</span>
+                <span id="progress-text" class="progress-bar">■■■■■■□□□□□□□□□□□□□□</span>
+                <span id="time-display" class="time-text">0:00 / --:--</span>
+            </div>
+            <div class="volume-group">
+                <span class="vol-label">VOLUME</span>
+                <div class="vol-controls">
+                    <button class="vol-btn" onclick="window.adjustVolume(-1)">−</button>
+                    <span id="ui-text" class="vol-value">03</span>
+                    <button class="vol-btn" onclick="window.adjustVolume(1)">+</button>
+                </div>
+            </div>
+        </div>
+    </footer>
 </div>
 
 <audio id="bgm" src="assets/bgm.mp3" loop preload="auto"></audio>

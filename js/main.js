@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. スクロールアニメーションの監視
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -9,11 +10,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // 名刺判定
+    // 2. URLパラメータ (?from=card) の判定
     const params = new URLSearchParams(window.location.search);
     if (params.get('from') === 'card') {
-        document.body.classList.add('is-card-access');
-        const realName = document.querySelector('.real-name');
-        if(realName) realName.style.display = 'block';
+        // 名刺から来た場合のみ要素を表示
+        const cardElements = document.querySelectorAll('.for-card-only');
+        cardElements.forEach(el => {
+            el.style.display = 'block';
+        });
     }
 });

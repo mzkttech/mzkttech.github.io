@@ -2,92 +2,61 @@
 
 :root {
 --accent: #00e5ff;
---purple: #bf00ff;
 --border: rgba(255, 255, 255, 0.2);
 }
 
-/* 文字サイズ可変設定 */
 body.font-small { font-size: 14px; }
 body.font-medium { font-size: 18px; }
 body.font-large { font-size: 22px; }
 
-body.dark-theme { --bg: #00050a; --text: #ffffff; --btn-bg: #111; }
-body.light-theme { --bg: #f0f4f8; --text: #111111; --btn-bg: #eeeeee; }
+body.dark-theme { --bg: #000; --text: #fff; --btn-bg: #111; }
+body.light-theme { --bg: #f5f5f5; --text: #111; --btn-bg: #ddd; }
 
 body {
 background: var(--bg); margin: 0; overflow: hidden; height: 100vh;
-font-family: 'Noto Sans JP', sans-serif; color: var(--text);
-transition: background 0.3s, font-size 0.2s;
+font-family: 'Noto Sans JP', sans-serif; color: var(--text); transition: 0.3s;
 }
 
 #particle-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.3; }
 
-/* オーバーレイ */
+/* Overlay */
 #audio-overlay {
 position: fixed; inset: 0; background: #000; z-index: 9999;
-display: flex; align-items: center; justify-content: center; text-align: center;
+display: flex; align-items: center; justify-content: center;
 }
-.loading-title { font-size: 3rem; color: #fff; margin-bottom: 2rem; letter-spacing: 5px; }
-.lang-selector, .sound-choice { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
-.choice-btn, .lang-btn {
-padding: 10px 20px; border: 1px solid #fff; background: none; color: #fff; cursor: pointer;
-}
-.choice-btn.primary { background: #fff; color: #000; }
+.loading-title { font-family: 'Share Tech Mono'; font-size: 3rem; color: #fff; margin-bottom: 2rem; }
+.lang-selector, .sound-choice { display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; }
 
-/* メインレイアウト */
+button { cursor: pointer; border: 1px solid var(--border); background: var(--btn-bg); color: var(--text); padding: 10px 20px; font-family: inherit; }
+button:hover { border-color: var(--accent); }
+.choice-btn.primary { background: #fff; color: #000; font-weight: bold; }
+
+/* Layout */
 #app-shell { display: flex; height: 100vh; position: relative; z-index: 10; }
-.side-nav {
-width: 280px; border-right: 1px solid var(--border); padding: 40px;
-display: flex; flex-direction: column; background: rgba(0,0,0,0.2);
-}
-
-.logo { font-family: 'Share Tech Mono'; font-size: 1.5rem; cursor: pointer; margin-bottom: 30px; }
-
-.accessibility-controls { margin-bottom: 30px; border-top: 1px solid var(--border); padding-top: 20px; }
-.ctrl-label { font-size: 0.7rem; color: var(--accent); margin-bottom: 10px; display: block; }
-.size-btns { display: flex; gap: 5px; }
-.size-btns button {
-flex: 1; background: var(--btn-bg); border: 1px solid var(--border);
-color: var(--text); padding: 5px; cursor: pointer;
-}
+.side-nav { width: 260px; border-right: 1px solid var(--border); padding: 40px; display: flex; flex-direction: column; background: rgba(0,0,0,0.1); }
+.logo { font-family: 'Share Tech Mono'; cursor: pointer; margin-bottom: 30px; font-size: 1.5rem; }
 
 .main-menu { flex: 1; }
-.menu-item { margin-bottom: 15px; cursor: pointer; display: flex; align-items: center; }
-.menu-item .num { font-family: 'Share Tech Mono'; color: var(--accent); margin-right: 15px; font-size: 0.8rem; }
-.menu-item a { text-decoration: none; color: var(--text); font-weight: 700; opacity: 0.6; transition: 0.3s; }
-.menu-item:hover a, .menu-item a.active { opacity: 1; padding-left: 10px; color: var(--accent); }
+.menu-item { margin-bottom: 20px; cursor: pointer; }
+.menu-item a { text-decoration: none; color: var(--text); opacity: 0.6; font-weight: bold; }
+.menu-item:hover a { opacity: 1; color: var(--accent); }
 
-#content-holder { flex: 1; padding: 60px 10%; overflow-y: auto; padding-bottom: 150px; }
-.title { font-size: 4rem; font-weight: 900; margin-bottom: 30px; line-height: 1; }
+#content-holder { flex: 1; padding: 60px 10%; overflow-y: auto; }
+.title { font-size: 4rem; font-weight: 900; line-height: 1; }
 
-/* フッター・音量調節（ここが修正の肝） */
+/* Footer & Volume */
 .system-footer {
-position: fixed; bottom: 0; left: 0; width: 100%;
-padding: 20px 40px; background: var(--bg); border-top: 1px solid var(--border);
-box-sizing: border-box;
+position: fixed; bottom: 0; width: 100%; padding: 20px 40px;
+background: var(--bg); border-top: 1px solid var(--border);
 }
-.player-controls { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
+.player-controls { display: flex; justify-content: space-between; align-items: center; }
+.status-group { display: flex; align-items: center; gap: 15px; }
+.control-main-btn { width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--accent); color: var(--accent); }
 
-.status-group { display: flex; align-items: center; gap: 20px; }
-.control-main-btn {
-width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--accent);
-background: none; color: var(--accent); cursor: pointer; font-size: 1.2rem;
-}
+.volume-container { display: flex; align-items: center; gap: 10px; }
+.vol-controls { display: flex; align-items: center; border: 1px solid var(--accent); overflow: hidden; border-radius: 4px; }
+.vol-btn { width: 40px; height: 40px; border: none; }
+.vol-btn.plus { background: var(--accent); color: #000; font-weight: bold; }
+.vol-value { width: 40px; text-align: center; font-family: 'Share Tech Mono'; }
 
-.volume-container { display: flex; align-items: center; gap: 15px; }
-.vol-label { font-family: 'Share Tech Mono'; font-size: 0.8rem; color: var(--accent); }
-.vol-controls {
-display: flex; align-items: center; border: 1px solid var(--accent);
-background: var(--btn-bg); border-radius: 4px; overflow: hidden;
-}
-.vol-btn {
-width: 45px; height: 45px; border: none; background: none;
-color: var(--text); cursor: pointer; font-size: 1.5rem;
-}
-.vol-btn.plus { background: var(--accent); color: #000; font-weight: bold; } /* ＋ボタンの視認性確保 */
-.vol-value { width: 45px; text-align: center; font-family: 'Share Tech Mono'; font-weight: bold; }
-
-.mail-trigger-btn {
-display: inline-block; margin-top: 30px; padding: 15px 30px;
-background: var(--accent); color: #000; text-decoration: none; font-weight: bold;
-}
+.mail-btn { display: inline-block; margin-top: 20px; padding: 15px 30px; background: var(--accent); color: #000; text-decoration: none; font-weight: bold; }

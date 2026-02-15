@@ -13,16 +13,20 @@
 
 <div id="audio-overlay">
 <div class="overlay-inner">
-<h2 class="loading-title">MZKT.TECH</h2>
-<div class="lang-selector">
-<button type="button" onclick="handleLang('ja')" class="lang-btn active">JP</button>
-<button type="button" onclick="handleLang('en')" class="lang-btn">EN</button>
-<button type="button" onclick="handleLang('zh')" class="lang-btn">ZH</button>
-</div>
-<div class="sound-choice">
-<button type="button" onclick="handleInit(true)" class="choice-btn primary">SYSTEM START</button>
-<button type="button" onclick="handleInit(false)" class="choice-btn">SILENT START</button>
-</div>
+<h2 id="opening-logo" class="loading-title">MZKT.TECH</h2>
+
+    <div class="lang-selector">
+        <button type="button" onclick="handleLangSelect('ja')" id="btn-ja" class="lang-btn">JP</button>
+        <button type="button" onclick="handleLangSelect('en')" id="btn-en" class="lang-btn">EN</button>
+        <button type="button" onclick="handleLangSelect('zh')" id="btn-zh" class="lang-btn">ZH</button>
+    </div>
+
+    <div id="start-actions" style="display: none; opacity: 0; transition: 0.5s;">
+        <div class="sound-choice">
+            <button type="button" onclick="handleInit(true)" class="choice-btn primary">SYSTEM START</button>
+            <button type="button" onclick="handleInit(false)" class="choice-btn">SILENT START</button>
+        </div>
+    </div>
 </div>
 </div>
 
@@ -46,11 +50,11 @@
         <div class="menu-item" onclick="handleNav('works')">
             <span class="num">02</span><a id="nav-works" class="lang-text" data-ja="制作物" data-en="WORKS" data-zh="作品集"></a>
         </div>
-        <div class="menu-item" onclick="handleNav('contact')">
-            <span class="num">03</span><a id="nav-contact" class="lang-text" data-ja="連絡先" data-en="CONTACT" data-zh="联系方式"></a>
+        <div class="menu-item" onclick="handleNav('log')">
+            <span class="num">03</span><a id="nav-log" class="lang-text" data-ja="日誌" data-en="LOG" data-zh="日志"></a>
         </div>
-        <div class="menu-item" onclick="handleNav('legal')">
-            <span class="num">04</span><a id="nav-legal" class="lang-text" data-ja="法的表記" data-en="LEGAL" data-zh="法律声明"></a>
+        <div class="menu-item" onclick="handleNav('contact')">
+            <span class="num">04</span><a id="nav-contact" class="lang-text" data-ja="連絡先" data-en="CONTACT" data-zh="联系方式"></a>
         </div>
     </nav>
 

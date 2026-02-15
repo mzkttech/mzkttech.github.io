@@ -1,36 +1,55 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>実績・スキル | mzkttech</title>
-<style>
-body { background-color: #e0f7fa; color: #37474f; font-family: sans-serif; margin: 0; display: flex; justify-content: center; }
-.container { width: 100%; max-width: 500px; padding: 20px; box-sizing: border-box; }
-h1 { color: #00838f; text-align: center; margin-top: 30px; border-bottom: 3px solid #00bcd4; display: inline-block; width: 100%; padding-bottom: 10px; }
-.card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-.card h2 { font-size: 1.1rem; color: #00838f; margin-top: 0; border-left: 4px solid #00bcd4; padding-left: 10px; }
-.skill-tag { display: inline-block; background: #b2ebf2; color: #00838f; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; margin: 5px 5px 0 0; }
-p { font-size: 0.85rem; line-height: 1.6; }
-.back-btn { display: block; text-align: center; text-decoration: none; background: #00838f; color: white !important; padding: 12px; border-radius: 8px; font-weight: bold; margin-top: 30px; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Works | mzkttech</title>
+    <style>
+        body { background-color: #e0f7fa; color: #37474f; font-family: sans-serif; margin: 0; padding: 20px; display: flex; justify-content: center; }
+        .container { width: 100%; max-width: 600px; }
+        .card { background: white; border-radius: 15px; padding: 25px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        h1 { color: #00838f; text-align: center; border-bottom: 3px solid #00bcd4; padding-bottom: 10px; }
+        h2 { font-size: 1.2rem; color: #00838f; border-left: 5px solid #00bcd4; padding-left: 10px; }
+        .skill-box { background: #e1f5fe; padding: 15px; border-radius: 10px; font-size: 0.9rem; margin: 10px 0; }
+        .process-step { border-left: 2px dashed #00bcd4; margin-left: 10px; padding-left: 20px; position: relative; margin-bottom: 15px; }
+        .process-step::before { content: "●"; position: absolute; left: -7px; color: #00bcd4; }
+        .btn-back { display: block; text-align: center; text-decoration: none; color: #00838f; font-weight: bold; margin-top: 20px; }
+    </style>
 </head>
 <body>
 <div class="container">
-    <h1>Works & Skills</h1>
+    <h1>制作実績と技術</h1>
+
     <div class="card">
-        <h2>動画制作実績</h2>
-        <p><b>卒業生を送る会 記念動画</b><br>企画・編集を担当。PowerDirector 2025 Ultraを使用し、AI機能を活用したノイズ除去やテロップ挿入、エフェクト処理を行いました。</p>
+        <h2>動画制作のプロセス</h2>
+        <p style="font-size:0.85rem;">「送る会の動画」制作時のフローです。効率とクオリティを両立させています。</p>
+        <div class="process-step">
+            <b>1. 構成案の作成（Gemini活用）</b><br>
+            AIと対話し、視聴者の感情を動かすストーリー構成を練り上げます。
+        </div>
+        <div class="process-step">
+            <b>2. 編集（PowerDirector 2025）</b><br>
+            最新のAIノイズ除去や自動字幕起こしを駆使し、短納期で高品質な映像に仕上げます。
+        </div>
+        <div class="process-step">
+            <b>3. 最終調整・納品</b><br>
+            音量の最適化や色調補正を行い、デバイスを選ばず綺麗に見える状態で納品します。
+        </div>
     </div>
+
     <div class="card">
-        <h2>保有スキル</h2>
-        <div class="skill-tag">PowerDirector 2025</div>
-        <div class="skill-tag">Google Gemini (AI)</div>
-        <div class="skill-tag">HTML / CSS</div>
-        <div class="skill-tag">英検3級</div>
-        <p style="margin-top:15px;">AIとの対話を通じた効率的な制作フローを構築しています。</p>
+        <h2>使用可能ツール</h2>
+        <div class="skill-box">
+            <b>PowerDirector 2025 Ultra</b><br>
+            メインの編集ソフト。高度なエフェクト処理が可能です。
+        </div>
+        <div class="skill-box">
+            <b>Google Gemini (AI)</b><br>
+            企画、スクリプト作成、技術的な問題解決に使用。
+        </div>
     </div>
-    <a href="index.html" class="back-btn">トップページに戻る</a>
+
+    <a href="index.html" class="btn-back">← トップページへ戻る</a>
 </div>
 </body>
 </html>

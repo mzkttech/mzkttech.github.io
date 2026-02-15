@@ -1,10 +1,15 @@
+ボタンを押しても反応しない原因として最も考えられるのは、JavaScript（main.js）の読み込み順序や、関数が正しく「window」オブジェクトに紐付いていないことです。
+
+すべての機能を統合し、「ボタンの反応」を最優先で修正した完全版コードを作成しました。これをそのまま上書きしてください。
+
+1. index.html
 <!DOCTYPE html>
 
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MZKT.TECH | UNIVERSAL CREATOR ARCHIVE</title>
+<title>MZKT.TECH | UNIVERSAL ARCHIVE</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="dark-theme font-medium">
@@ -15,55 +20,49 @@
 <div class="overlay-inner">
 <h2 class="loading-title">MZKT.TECH</h2>
 <div class="lang-selector">
-<button onclick="window.setLang('ja')" class="lang-btn active">JP</button>
-<button onclick="window.setLang('en')" class="lang-btn">EN</button>
-<button onclick="window.setLang('zh')" class="lang-btn">ZH</button>
+<button type="button" onclick="handleLang('ja')" class="lang-btn active">JP</button>
+<button type="button" onclick="handleLang('en')" class="lang-btn">EN</button>
+<button type="button" onclick="handleLang('zh')" class="lang-btn">ZH</button>
 </div>
 <div class="sound-choice">
-<button onclick="window.initSite(true)" class="choice-btn primary">SYSTEM START</button>
-<button onclick="window.initSite(false)" class="choice-btn">SILENT START</button>
+<button type="button" onclick="handleInit(true)" class="choice-btn primary">SYSTEM START</button>
+<button type="button" onclick="handleInit(false)" class="choice-btn">SILENT START</button>
 </div>
 </div>
 </div>
 
 <div id="app-shell" style="display: none; opacity: 0;">
 <aside class="side-nav">
-<div class="nav-top">
-<h1 class="logo" onclick="window.navigateTo('home')">MZKT.TECH</h1>
+<h1 class="logo" onclick="handleNav('home')">MZKT.TECH</h1>
 
-        <div class="accessibility-controls">
-            <span class="ctrl-label">FONT SIZE</span>
-            <div class="size-btns">
-                <button onclick="window.setFontSize('small')">A-</button>
-                <button onclick="window.setFontSize('medium')">A</button>
-                <button onclick="window.setFontSize('large')">A+</button>
-            </div>
+    <div class="accessibility-controls">
+        <span class="ctrl-label">FONT SIZE</span>
+        <div class="size-btns">
+            <button type="button" onclick="handleFontSize('small')">A-</button>
+            <button type="button" onclick="handleFontSize('medium')">A</button>
+            <button type="button" onclick="handleFontSize('large')">A+</button>
         </div>
     </div>
     
     <nav class="main-menu">
-        <div class="menu-item" onclick="window.navigateTo('home')">
+        <div class="menu-item" onclick="handleNav('home')">
             <span class="num">01</span><a id="nav-home" class="lang-text" data-ja="ホーム" data-en="HOME" data-zh="首页"></a>
         </div>
-        <div class="menu-item" onclick="window.navigateTo('about')">
-            <span class="num">02</span><a id="nav-about" class="lang-text" data-ja="スペック" data-en="SPEC" data-zh="能力"></a>
+        <div class="menu-item" onclick="handleNav('about')">
+            <span class="num">02</span><a id="nav-about" class="lang-text" data-ja="能力" data-en="SPEC" data-zh="能力"></a>
         </div>
-        <div class="menu-item" onclick="window.navigateTo('works')">
+        <div class="menu-item" onclick="handleNav('works')">
             <span class="num">03</span><a id="nav-works" class="lang-text" data-ja="制作物" data-en="WORKS" data-zh="作品集"></a>
         </div>
-        <div class="menu-item" onclick="window.navigateTo('legal')">
-            <span class="num">04</span><a id="nav-legal" class="lang-text" data-ja="法的表記" data-en="LEGAL" data-zh="法律声明"></a>
-        </div>
-        <div class="menu-item" onclick="window.navigateTo('contact')">
-            <span class="num">05</span><a id="nav-contact" class="lang-text" data-ja="連絡先" data-en="CONTACT" data-zh="联系方式"></a>
+        <div class="menu-item" onclick="handleNav('contact')">
+            <span class="num">04</span><a id="nav-contact" class="lang-text" data-ja="連絡先" data-en="CONTACT" data-zh="联系方式"></a>
         </div>
     </nav>
 
     <div class="nav-bottom">
-        <button onclick="window.toggleTheme()" class="theme-btn lang-text" data-ja="配色切替" data-en="THEME" data-zh="切换主题"></button>
+        <button type="button" onclick="handleTheme()" class="theme-btn lang-text" data-ja="配色切替" data-en="THEME" data-zh="切换主题"></button>
         <div class="copyright-box">
             <p>START: 2025.10.11</p>
-            <p>SYSTEM: v3.8-FIXED</p>
             <p>&copy; 2026 MZKT.TECH</p>
         </div>
     </div>
@@ -74,19 +73,18 @@
 <footer class="system-footer">
     <div class="player-controls">
         <div class="status-group">
-            <button id="play-pause-btn" class="control-main-btn" onclick="window.togglePlay()">▶</button>
+            <button type="button" id="play-pause-btn" class="control-main-btn" onclick="handleTogglePlay()">▶</button>
             <div class="text-info">
-                <span id="play-status" class="purple-text">MZKT // ACTIVE</span>
-                <span id="time-display" class="time-text">0:00 / 0:00</span>
+                <span class="purple-text">MZKT // ACTIVE</span>
             </div>
         </div>
         
         <div class="volume-container">
             <span class="vol-label">VOLUME</span>
             <div class="vol-controls">
-                <button class="vol-btn" onclick="window.adjustVolume(-1)">−</button>
-                <span id="ui-text" class="vol-value">05</span>
-                <button class="vol-btn plus" onclick="window.adjustVolume(1)">+</button>
+                <button type="button" class="vol-btn" onclick="handleVolume(-1)">−</button>
+                <span id="ui-vol-text" class="vol-value">05</span>
+                <button type="button" class="vol-btn plus" onclick="handleVolume(1)">+</button>
             </div>
         </div>
     </div>

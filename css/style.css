@@ -1,37 +1,39 @@
-::root {
-    --bg: #050505;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+
+:root {
+    --bg: #050505; /* 真っ黒ではなく、深みのある黒 */
     --text: #ffffff;
     --accent: #00e5ff;
     --sub: #777777;
-    --border: rgba(255, 255, 255, 0.1);
+    --border: rgba(255, 255, 255, 0.08);
 }
 
 body {
     background-color: var(--bg);
     color: var(--text);
-    font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+    font-family: 'Inter', sans-serif; /* 洗練された欧文フォント */
     margin: 0;
-    line-height: 1.5;
+    line-height: 1.6;
     overflow-x: hidden;
 }
 
-/* スクロールで現れるアニメーション */
+/* スクロールアニメーション：WD風の滑らかな浮き上がり */
 .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(40px);
+    transition: all 1.4s cubic-bezier(0.19, 1, 0.22, 1);
 }
 .reveal.is-visible {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* PC版：左右分割レイアウト */
+/* PC：左右分割レイアウト（WDインスパイア） */
 @media screen and (min-width: 768px) {
     .layout-wrapper { display: flex; height: 100vh; }
     .side-static {
         flex: 1;
-        padding: 80px;
+        padding: 100px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -39,25 +41,58 @@ body {
         top: 0;
         border-right: 1px solid var(--border);
     }
-    .main-scroll { flex: 1; padding: 120px 80px; }
+    .main-scroll {
+        flex: 1;
+        padding: 150px 100px;
+        overflow-y: auto;
+    }
 }
 
-/* SP版：ミニマルレイアウト */
+/* SP：ミニマルなスマホレイアウト（ブルーエッジ風） */
 @media screen and (max-width: 767px) {
-    .side-static { padding: 60px 25px 20px; border-bottom: 1px solid var(--border); }
-    .main-scroll { padding: 40px 25px 80px; }
-    h1 { font-size: 2.2rem; }
+    .side-static { padding: 80px 30px 40px; border-bottom: 1px solid var(--border); }
+    .main-scroll { padding: 60px 30px 100px; }
+    h1 { font-size: 2.8rem; letter-spacing: -0.02em; }
 }
 
-/* 共通パーツ */
+/* テキスト装飾 */
+h1 { font-weight: 700; letter-spacing: -0.05em; margin: 0; }
 .nav-link {
     display: block;
     text-decoration: none;
     color: inherit;
-    margin-bottom: 100px;
-    transition: 0.4s;
+    margin-bottom: 120px; /* 余白を広くとるのが高級感のコツ */
+    position: relative;
 }
-.nav-link:hover { opacity: 0.6; }
-.nav-num { color: var(--accent); font-family: monospace; font-size: 0.8rem; }
-.nav-title { font-size: 2.5rem; margin: 15px 0; font-weight: 300; }
-.nav-desc { color: var(--sub); font-size: 0.85rem; }
+
+.nav-num {
+    display: block;
+    color: var(--accent);
+    font-family: monospace;
+    font-size: 0.7rem;
+    margin-bottom: 10px;
+}
+
+.nav-title {
+    font-size: 3.5rem; /* 文字を大きくしてインパクトを出す */
+    font-weight: 300;
+    margin: 0;
+    transition: 0.5s;
+}
+
+.nav-link:hover .nav-title {
+    color: var(--accent);
+    transform: translateX(20px);
+}
+
+.nav-desc {
+    color: var(--sub);
+    font-size: 0.8rem;
+    margin-top: 15px;
+    font-weight: 400;
+}
+
+/* スクロールバーのカスタマイズ（PC用） */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); }

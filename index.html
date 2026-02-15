@@ -5,42 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MZKT.TECH</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/main.js" defer></script>
 </head>
 <body>
 
 <div id="audio-overlay">
-    <div class="overlay-content reveal">
-        <h2 style="letter-spacing: 0.5em; font-weight: 300;">MZKT<span class="accent-dot">.</span>TECH</h2>
-        <p style="font-size: 0.7rem; color: var(--sub); margin-top: 10px;">EXPERIENCE WITH SOUND</p>
-        <div style="display: flex; gap: 20px; justify-content: center; margin-top: 50px;">
-            <button onclick="initSite(true)" class="btn-mail">SOUND ON</button>
-            <button onclick="initSite(false)" class="btn-mail" style="opacity: 0.5;">SOUND OFF</button>
+    <div class="overlay-inner">
+        <h2 class="loading-title">MZKT.TECH</h2>
+        <div class="sound-choice">
+            <button onclick="initSite(true)" class="choice-btn">ENTER WITH SOUND</button>
+            <button onclick="initSite(false)" class="choice-btn muted">WITHOUT SOUND</button>
         </div>
     </div>
 </div>
 
-<div class="layout-wrapper" id="app-body" style="display: none; opacity: 0;">
-    <aside class="side-static">
-        <div>
-            <h1 onclick="navigateTo('home')" style="cursor:pointer;">MZKT<span class="accent-dot">.</span>TECH</h1>
-            <p class="sub-text">EST. 2026 / INFO ENGINEERING</p>
+<div id="app-shell" style="visibility: hidden; opacity: 0;">
+    <aside class="side-nav">
+        <div class="nav-top">
+            <h1 class="logo" onclick="navigateTo('home')">MZKT<span>.</span></h1>
         </div>
-        <div id="page-indicator">/ HOME</div>
+        <nav class="main-menu">
+            <a onclick="navigateTo('home')">HOME</a>
+            <a onclick="navigateTo('profile')">PROFILE</a>
+            <a onclick="navigateTo('works')">WORKS</a>
+            <a onclick="navigateTo('contact')">CONTACT</a>
+        </nav>
+        <div class="nav-bottom">
+            <p class="copyright">&copy; 2026 MZKT.TECH</p>
+        </div>
     </aside>
 
-    <main class="main-scroll" id="content-area">
+    <main id="content-holder">
         </main>
 </div>
 
-<div id="audio-control" onclick="toggleAudio()" style="display:none;">
-    <div class="visualizer">
-        <span class="v-bar"></span><span class="v-bar"></span><span class="v-bar"></span><span class="v-bar"></span>
+<div id="audio-ui" onclick="toggleAudio()" style="display:none;">
+    <div class="wave-container">
+        <span class="stroke"></span><span class="stroke"></span><span class="stroke"></span><span class="stroke"></span>
     </div>
-    <span id="audio-text">SOUND OFF</span>
+    <span id="ui-text">MUTE</span>
 </div>
 
 <audio id="bgm" src="assets/bgm.mp3" loop></audio>
 
+<script src="js/main.js"></script>
 </body>
 </html>

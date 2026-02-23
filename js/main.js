@@ -16,7 +16,7 @@ const database = {
     log: { 
         ja: '<h1 class="page-h">LOG.</h1><div class="item-card"><h3>2026.02.15</h3><p>全機能統合版のリリース。モバイルでの視認性問題を完全に解消。グリッチ演出を最適化。</p></div>' 
     },
-    contact: { ja: '<h1 class="page-h">CONNECT.</h1><p>Mail: mzkt.tech@gmail.com<br>System: MZKT_V4_OPERATOR</p>' }
+    contact: { ja: '<h1 class="page-h">CONNECT.</h1><p>Mail: mzkt.tech@gmail.com<br>System: MZKT_V5_OPERATOR</p>' }
 };
 
 window.handleLangSelect = function(l) {

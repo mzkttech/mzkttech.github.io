@@ -23,8 +23,7 @@ works: {
 ja: '<h1 class="page-h">WORKS.</h1><div class="item-card"><h3>GLITCH TRANSITION</h3><p>ページ遷移時の高度な視覚効果を実装。UI/UXの没入感を高めます。</p></div><div class="item-card"><h3>VIRTUAL BGM</h3><p>システム全体を包み込むアンビエント音響システム。</p></div>'
 },
 log: {
-ja: '<h1 class="page-h">LOG.</h1><div class="item-card"><h3>2026.02.23</h3><p>MZKT.TECH 公開。システムが正常にデプロイされました。これよりアーカイブの蓄積を開始します。</p></div><div class="item-card"><h3>2026.02.15</h3><p>全機能統合版のリリース。モバイルでの視認性問題を完全に解消。グリッチ演出を最適化。</p></div>',
-en: '<h1 class="page-h">LOG.</h1><div class="item-card"><h3>2026.02.23</h3><p>MZKT.TECH launched. System deployed successfully. Starting archive operations.</p></div>'
+ja: '<h1 class="page-h">LOG.</h1><div class="item-card"><h3>2026.02.23</h3><p>MZKT.TECH 公開。システムデプロイ完了。デジタルアーカイブとしての運用を開始。</p></div><div class="item-card"><h3>2026.02.15</h3><p>全機能統合版のリリース。モバイルでの視認性問題を完全に解消。グリッチ演出を最適化。</p></div>'
 },
 contact: { ja: '<h1 class="page-h">CONNECT.</h1><p>Mail: mzkt.tech@gmail.com
 
@@ -32,7 +31,7 @@ contact: { ja: '<h1 class="page-h">CONNECT.</h1><p>Mail: mzkt.tech@gmail.com
 System: MZKT_V4_OPERATOR</p>' }
 };
 
-// タイピング演出用の関数
+// タイピング演出用の制御関数
 function typeWriter(element, html, speed = 20) {
 element.innerHTML = "";
 let i = 0;
@@ -84,12 +83,12 @@ setTimeout(() => {
 const h = document.getElementById('view-container');
 const content = database[key] ? (database[key][currentLang] || database[key]['ja']) : database['home'][currentLang];
 
-    // フェードとタイピングの同時実行
     h.classList.remove('view-fade');
     void h.offsetWidth;
     h.classList.add('view-fade');
     
-    typeWriter(h, content); // タイピング演出を実行
+    // タイピング演出を実行
+    typeWriter(h, content);
     
     document.getElementById('main-content').scrollTop = 0;
     document.querySelectorAll('.lang-text').forEach(el => {

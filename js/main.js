@@ -93,4 +93,4 @@ window.addEventListener('mousemove', (e) => {
     for(let i=0; i<2; i++) pts.push({x:e.clientX, y:e.clientY, vx:Math.random()-0.5, vy:Math.random()-0.5, o:0.5});
 });
 draw();
-})();　これｊｓ　ここに変更して
+})();　
